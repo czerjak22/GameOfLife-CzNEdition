@@ -21,7 +21,18 @@ namespace Catch_me__
 
         private void playBtn_Click(object sender, EventArgs e)
         {
-            this.Visible = false;   
+            this.Visible = false;
+            //nem jo  mar a meglevo jatekot nyissa meg
+            //torulnom kell a gam user formot
+            //s azutan egy ujat kell rakjak a helebe
+
+            /* var p = Parent.Controls.OfType<Game>().FirstOrDefault();
+
+             if (p != null) p.Visible = true;
+            */
+            Form1 g = Parent.FindForm() as Form1;
+            if (g == null) return;
+            g.makeNewGame();
 
         }
 

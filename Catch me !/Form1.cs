@@ -12,10 +12,14 @@ namespace Catch_me__
 {
 	public partial class Form1 : Form
 	{
+        private Game game1;
         public Form1()
 		{
 			InitializeComponent();
 			//MainPanel();
+			//makeNewGame();
+			
+			GlobalVar.readFromFile();
         }
 		/*
 		//putton higlighten sond play generally made....
@@ -53,6 +57,28 @@ namespace Catch_me__
 		{
             mainMenuStatic.Visible = true;
             controlPanelStatic.Visible = false;
+        }
+		public void makeNewGame()
+		{
+            this.Controls.Remove(this.game1);
+            game1 = new Game();
+            this.game1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.game1.Location = new System.Drawing.Point(0, 0);
+            this.game1.Name = "game1";
+            this.game1.Size = new System.Drawing.Size(461, 442);
+            this.game1.TabIndex = 2;
+          
+            this.Controls.Add(this.game1);
+        }
+
+		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+		{
+            ///elmentem az adatokat ugy ahogy vannak a globalvar be s mikor bezarom a formot akkor irom eyszerre ki egy fileba
+            ///sorrend talan megleszi igy oldva
+            ///nem lesz reduplikalas
+            // GlobalVar.ki.Close();
+            //GlobalVar.be.Close();
+            GlobalVar.SaveToFile();
         }
 	}
 }

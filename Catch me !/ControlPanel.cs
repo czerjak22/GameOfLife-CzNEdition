@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,17 @@ namespace Catch_me__
         public ControlPanel()
         {
             InitializeComponent();
+            InitializeValues();
+
+        }
+
+        private void InitializeValues()
+        {
+            musicCkb.Checked = GlobalVar.IsMusic;
+            musicBar.Enabled = musicCkb.Checked;
+            soundsCkb.Checked = GlobalVar.IsSounds;
+            soundBar.Enabled = soundsCkb.Checked;
+
         }
 
         private void ReturnBtn_Click(object sender, EventArgs e)
@@ -26,6 +38,23 @@ namespace Catch_me__
             if (p != null) p.Visible = true;
         }
 
-        
+        private void musicCkb_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            musicBar.Enabled = musicCkb.Checked;
+            GlobalVar.IsMusic = musicCkb.Checked;
+
+        }
+
+        private void musicCkb_VisibleChanged(object sender, EventArgs e)
+        {
+            InitializeValues();
+        }
+
+        private void soundsCkb_CheckedChanged(object sender, EventArgs e)
+        {
+            soundBar.Enabled = soundsCkb.Checked;
+            GlobalVar.IsSounds = soundsCkb.Checked;
+        }
     }
 }

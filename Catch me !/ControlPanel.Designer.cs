@@ -68,6 +68,7 @@
             this.soundsCkb.TabIndex = 4;
             this.soundsCkb.Text = "Sounds";
             this.soundsCkb.UseVisualStyleBackColor = true;
+            this.soundsCkb.CheckedChanged += new System.EventHandler(this.soundsCkb_CheckedChanged);
             // 
             // musicCkb
             // 
@@ -78,13 +79,17 @@
             this.musicCkb.TabIndex = 6;
             this.musicCkb.Text = "Music";
             this.musicCkb.UseVisualStyleBackColor = true;
+            this.musicCkb.CheckedChanged += new System.EventHandler(this.musicCkb_CheckedChanged);
+            this.musicCkb.VisibleChanged += new System.EventHandler(this.musicCkb_VisibleChanged);
             // 
             // musicBar
             // 
             this.musicBar.Location = new System.Drawing.Point(280, 176);
+            this.musicBar.Minimum = 1;
             this.musicBar.Name = "musicBar";
             this.musicBar.Size = new System.Drawing.Size(159, 45);
             this.musicBar.TabIndex = 7;
+            this.musicBar.Value = 1;
             // 
             // soundBar
             // 

@@ -28,9 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.mainMenuStatic = new Catch_me__.MainMenu();
             this.controlPanelStatic = new Catch_me__.ControlPanel();
+            this.mainMenuStatic = new Catch_me__.MainMenu();
+            this.game1 = new Catch_me__.Game();
             this.SuspendLayout();
+            // 
+            // controlPanelStatic
+            // 
+            this.controlPanelStatic.BackColor = System.Drawing.Color.Coral;
+            this.controlPanelStatic.Location = new System.Drawing.Point(0, 0);
+            this.controlPanelStatic.Name = "controlPanelStatic";
+            this.controlPanelStatic.Size = new System.Drawing.Size(461, 442);
+            this.controlPanelStatic.TabIndex = 1;
+            this.controlPanelStatic.Visible = false;
             // 
             // mainMenuStatic
             // 
@@ -41,14 +51,13 @@
             this.mainMenuStatic.Size = new System.Drawing.Size(461, 442);
             this.mainMenuStatic.TabIndex = 0;
             // 
-            // controlPanelStatic
+            // game1
             // 
-            this.controlPanelStatic.BackColor = System.Drawing.Color.Coral;
-            this.controlPanelStatic.Location = new System.Drawing.Point(0, 0);
-            this.controlPanelStatic.Name = "controlPanelStatic";
-            this.controlPanelStatic.Size = new System.Drawing.Size(461, 442);
-            this.controlPanelStatic.TabIndex = 1;
-            this.controlPanelStatic.Visible = false;
+            this.game1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.game1.Location = new System.Drawing.Point(0, 0);
+            this.game1.Name = "game1";
+            this.game1.Size = new System.Drawing.Size(461, 442);
+            this.game1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -61,6 +70,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catch me!";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
 
 		}
@@ -70,6 +80,7 @@
 
         public MainMenu mainMenuStatic;
         public ControlPanel controlPanelStatic;
+      
     }
 }
 
