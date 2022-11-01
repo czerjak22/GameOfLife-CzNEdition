@@ -43,7 +43,7 @@
             this.costumizeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.costumizeBtn.BackColor = System.Drawing.Color.Transparent;
             this.costumizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.costumizeBtn.Location = new System.Drawing.Point(47, 342);
+            this.costumizeBtn.Location = new System.Drawing.Point(61, 347);
             this.costumizeBtn.MinimumSize = new System.Drawing.Size(10, 30);
             this.costumizeBtn.Name = "costumizeBtn";
             this.costumizeBtn.Size = new System.Drawing.Size(339, 64);
@@ -55,7 +55,7 @@
             // 
             this.mainActraction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mainActraction.Image = ((System.Drawing.Image)(resources.GetObject("mainActraction.Image")));
-            this.mainActraction.Location = new System.Drawing.Point(150, 92);
+            this.mainActraction.Location = new System.Drawing.Point(162, 92);
             this.mainActraction.Name = "mainActraction";
             this.mainActraction.Size = new System.Drawing.Size(137, 64);
             this.mainActraction.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -67,7 +67,7 @@
             this.optionsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.optionsBtn.BackColor = System.Drawing.Color.Transparent;
             this.optionsBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.optionsBtn.Location = new System.Drawing.Point(47, 263);
+            this.optionsBtn.Location = new System.Drawing.Point(61, 262);
             this.optionsBtn.MinimumSize = new System.Drawing.Size(10, 30);
             this.optionsBtn.Name = "optionsBtn";
             this.optionsBtn.Size = new System.Drawing.Size(339, 64);
@@ -81,7 +81,7 @@
             this.playBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.playBtn.BackColor = System.Drawing.Color.Transparent;
             this.playBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.playBtn.Location = new System.Drawing.Point(47, 180);
+            this.playBtn.Location = new System.Drawing.Point(61, 177);
             this.playBtn.MinimumSize = new System.Drawing.Size(10, 30);
             this.playBtn.Name = "playBtn";
             this.playBtn.Size = new System.Drawing.Size(339, 64);
@@ -93,7 +93,7 @@
             // moneyNum
             // 
             this.moneyNum.AutoSize = true;
-            this.moneyNum.Location = new System.Drawing.Point(382, 36);
+            this.moneyNum.Location = new System.Drawing.Point(369, 36);
             this.moneyNum.Name = "moneyNum";
             this.moneyNum.Size = new System.Drawing.Size(31, 13);
             this.moneyNum.TabIndex = 22;
@@ -102,7 +102,7 @@
             // moneyName
             // 
             this.moneyName.AutoSize = true;
-            this.moneyName.Location = new System.Drawing.Point(336, 36);
+            this.moneyName.Location = new System.Drawing.Point(323, 36);
             this.moneyName.Name = "moneyName";
             this.moneyName.Size = new System.Drawing.Size(39, 13);
             this.moneyName.TabIndex = 21;

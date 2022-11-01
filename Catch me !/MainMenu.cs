@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,7 +34,7 @@ namespace Catch_me__
             Form1 g = Parent.FindForm() as Form1;
             if (g == null) return;
             g.makeNewGame();
-
+           
         }
 
         private void optionsBtn_Click(object sender, EventArgs e)

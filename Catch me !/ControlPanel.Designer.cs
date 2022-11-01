@@ -42,18 +42,20 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(162, 29);
+            this.label1.Location = new System.Drawing.Point(216, 36);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 64);
+            this.label1.Size = new System.Drawing.Size(177, 79);
             this.label1.TabIndex = 0;
             this.label1.Text = "Options";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ReturnBtn
             // 
-            this.ReturnBtn.Location = new System.Drawing.Point(153, 370);
+            this.ReturnBtn.Location = new System.Drawing.Point(204, 455);
+            this.ReturnBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ReturnBtn.Name = "ReturnBtn";
-            this.ReturnBtn.Size = new System.Drawing.Size(160, 42);
+            this.ReturnBtn.Size = new System.Drawing.Size(213, 52);
             this.ReturnBtn.TabIndex = 3;
             this.ReturnBtn.Text = "Return";
             this.ReturnBtn.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // soundsCkb
             // 
             this.soundsCkb.AutoSize = true;
-            this.soundsCkb.Location = new System.Drawing.Point(74, 140);
+            this.soundsCkb.Location = new System.Drawing.Point(99, 172);
+            this.soundsCkb.Margin = new System.Windows.Forms.Padding(4);
             this.soundsCkb.Name = "soundsCkb";
-            this.soundsCkb.Size = new System.Drawing.Size(62, 17);
+            this.soundsCkb.Size = new System.Drawing.Size(75, 20);
             this.soundsCkb.TabIndex = 4;
             this.soundsCkb.Text = "Sounds";
             this.soundsCkb.UseVisualStyleBackColor = true;
@@ -73,9 +76,10 @@
             // musicCkb
             // 
             this.musicCkb.AutoSize = true;
-            this.musicCkb.Location = new System.Drawing.Point(326, 140);
+            this.musicCkb.Location = new System.Drawing.Point(435, 172);
+            this.musicCkb.Margin = new System.Windows.Forms.Padding(4);
             this.musicCkb.Name = "musicCkb";
-            this.musicCkb.Size = new System.Drawing.Size(54, 17);
+            this.musicCkb.Size = new System.Drawing.Size(64, 20);
             this.musicCkb.TabIndex = 6;
             this.musicCkb.Text = "Music";
             this.musicCkb.UseVisualStyleBackColor = true;
@@ -84,23 +88,27 @@
             // 
             // musicBar
             // 
-            this.musicBar.Location = new System.Drawing.Point(280, 176);
+            this.musicBar.Location = new System.Drawing.Point(373, 217);
+            this.musicBar.Margin = new System.Windows.Forms.Padding(4);
             this.musicBar.Minimum = 1;
             this.musicBar.Name = "musicBar";
-            this.musicBar.Size = new System.Drawing.Size(159, 45);
+            this.musicBar.Size = new System.Drawing.Size(212, 56);
             this.musicBar.TabIndex = 7;
             this.musicBar.Value = 1;
+            this.musicBar.Scroll += new System.EventHandler(this.musicBar_Scroll);
             // 
             // soundBar
             // 
-            this.soundBar.Location = new System.Drawing.Point(33, 176);
+            this.soundBar.Location = new System.Drawing.Point(44, 217);
+            this.soundBar.Margin = new System.Windows.Forms.Padding(4);
             this.soundBar.Name = "soundBar";
-            this.soundBar.Size = new System.Drawing.Size(159, 45);
+            this.soundBar.Size = new System.Drawing.Size(212, 56);
             this.soundBar.TabIndex = 8;
+            this.soundBar.Scroll += new System.EventHandler(this.soundBar_Scroll);
             // 
             // ControlPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Coral;
             this.Controls.Add(this.soundBar);
@@ -109,8 +117,9 @@
             this.Controls.Add(this.soundsCkb);
             this.Controls.Add(this.ReturnBtn);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ControlPanel";
-            this.Size = new System.Drawing.Size(461, 442);
+            this.Size = new System.Drawing.Size(615, 544);
             ((System.ComponentModel.ISupportInitialize)(this.musicBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundBar)).EndInit();
             this.ResumeLayout(false);

@@ -27,6 +27,8 @@ namespace Catch_me__
             soundsCkb.Checked = GlobalVar.IsSounds;
             soundBar.Enabled = soundsCkb.Checked;
 
+            soundBar.Value = GlobalVar.SoundBarValue;
+            musicBar.Value = GlobalVar.MusicBarValue;
         }
 
         private void ReturnBtn_Click(object sender, EventArgs e)
@@ -55,6 +57,18 @@ namespace Catch_me__
         {
             soundBar.Enabled = soundsCkb.Checked;
             GlobalVar.IsSounds = soundsCkb.Checked;
+        }
+
+        private void soundBar_Scroll(object sender, EventArgs e)
+        {
+            //ide meg kell irjam az ertek a menteset 
+            GlobalVar.SoundBarValue=soundBar.Value;
+          
+        }
+
+        private void musicBar_Scroll(object sender, EventArgs e)
+        {
+           GlobalVar.MusicBarValue=musicBar.Value;  
         }
     }
 }

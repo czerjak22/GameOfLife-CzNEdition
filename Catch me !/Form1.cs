@@ -4,62 +4,48 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Catch_me__
 {
-	public partial class Form1 : Form
-	{
+    public partial class Form1 : Form
+    {
         private Game game1;
         public Form1()
-		{
-			InitializeComponent();
-			//MainPanel();
-			//makeNewGame();
-			
-			GlobalVar.readFromFile();
+        {
+            InitializeComponent();
+            //MainPanel();
+            //makeNewGame();
+
+            GlobalVar.readFromFile();
+            //ez nem megy mindig le talan tul rovid????
+             SoundPlayer g = new SoundPlayer("igen.wav");
+        g.Play();
+            //xd
+            //SystemSounds.Hand.Play();
+            
+            
+            
         }
-		/*
-		//putton higlighten sond play generally made....
-		private void playBtn_Click(object sender, EventArgs e)
-		{
-			//kene uj panelt tudni inportalni....
-			
-		}
-
-		private void optionsBtn_Click(object sender, EventArgs e)
-		{
-			//kene uj panelt tudni inportalni....
-			
-		}
 
 
-		private void mainActraction_Click(object sender, EventArgs e)
-		{
-			//kene animaljak
-		}*/
-		void MainPanel()
-		{
-			MainMenu control = new MainMenu();
-			control.Dock = DockStyle.Fill;
-			control.Visible = true;
-			control.Enabled = true;
+        public void menuToOptions()
+        {
+            mainMenuStatic.Visible = false;
+            //	controlPanelStatic.Visible = true;
 
-		}
-		public void menuToOptions()
-		{
-			mainMenuStatic.Visible = false;
-			controlPanelStatic.Visible = true;
-		}
-		public void optionsToMenu()
-		{
+        }
+        public void optionsToMenu()
+        {
             mainMenuStatic.Visible = true;
             controlPanelStatic.Visible = false;
         }
-		public void makeNewGame()
-		{
+        public void makeNewGame()
+        {
+
             this.Controls.Remove(this.game1);
             game1 = new Game();
             this.game1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -67,18 +53,16 @@ namespace Catch_me__
             this.game1.Name = "game1";
             this.game1.Size = new System.Drawing.Size(461, 442);
             this.game1.TabIndex = 2;
-          
             this.Controls.Add(this.game1);
         }
 
-		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-		{
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
             ///elmentem az adatokat ugy ahogy vannak a globalvar be s mikor bezarom a formot akkor irom eyszerre ki egy fileba
             ///sorrend talan megleszi igy oldva
             ///nem lesz reduplikalas
-            // GlobalVar.ki.Close();
-            //GlobalVar.be.Close();
+
             GlobalVar.SaveToFile();
         }
-	}
+    }
 }
