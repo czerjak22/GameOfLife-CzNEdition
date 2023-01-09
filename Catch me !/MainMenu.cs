@@ -40,7 +40,7 @@ namespace Catch_me__
         private void optionsBtn_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-
+            
             var p = Parent.Controls.OfType<ControlPanel>().FirstOrDefault();
 
             if (p != null) p.Visible = true;

@@ -37,7 +37,7 @@
             // 
             this.controlPanelStatic.BackColor = System.Drawing.Color.Coral;
             this.controlPanelStatic.Location = new System.Drawing.Point(0, 0);
-            this.controlPanelStatic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.controlPanelStatic.Margin = new System.Windows.Forms.Padding(4);
             this.controlPanelStatic.Name = "controlPanelStatic";
             this.controlPanelStatic.Size = new System.Drawing.Size(461, 442);
             this.controlPanelStatic.TabIndex = 1;
@@ -48,12 +48,18 @@
             this.mainMenuStatic.BackColor = System.Drawing.Color.CornflowerBlue;
             this.mainMenuStatic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainMenuStatic.Location = new System.Drawing.Point(0, 0);
-            this.mainMenuStatic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainMenuStatic.Margin = new System.Windows.Forms.Padding(4);
             this.mainMenuStatic.Name = "mainMenuStatic";
             this.mainMenuStatic.Size = new System.Drawing.Size(461, 442);
             this.mainMenuStatic.TabIndex = 0;
-            
-          
+            // 
+            // game1
+            // 
+            this.game1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.game1.Location = new System.Drawing.Point(0, 0);
+            this.game1.Name = "game1";
+            this.game1.Size = new System.Drawing.Size(461, 442);
+            this.game1.TabIndex = 0;
             // 
             // Form1
             // 
