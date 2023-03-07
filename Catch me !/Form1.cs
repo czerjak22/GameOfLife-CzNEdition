@@ -22,8 +22,8 @@ namespace Catch_me__
 
             GlobalVar.readFromFile();
             //ez nem megy mindig le talan tul rovid????
-             SoundPlayer g = new SoundPlayer("igen.wav");
-        g.Play();
+         //    SoundPlayer g = new SoundPlayer("igen.wav");
+        //g.Play();
             //xd
             //SystemSounds.Hand.Play();
             
@@ -54,6 +54,7 @@ namespace Catch_me__
             this.game1.Size = new System.Drawing.Size(461, 442);
             this.game1.TabIndex = 2;
             this.Controls.Add(this.game1);
+            game1.Dock=DockStyle.Fill;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

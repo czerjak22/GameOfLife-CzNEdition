@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game Folder\Board.cs" />
+    <Compile Include="Game Folder\Cell.cs" />
     <Compile Include="ControlPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
