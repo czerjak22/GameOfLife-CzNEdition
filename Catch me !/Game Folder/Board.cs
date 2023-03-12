@@ -90,6 +90,7 @@ namespace Catch_me__
         {
             cells[i, j].IsAlive = !cells[i, j].IsAlive;
         }
+
      public Bitmap GetBitmap()
         {
             return bmp;
@@ -110,23 +111,31 @@ namespace Catch_me__
         public void CellsInit()
         {
             Random r= new Random();
-        
-          
-            for(int i=0;i<cellsNumY;i++) ////itt a cellak szamaig kell menjek a cellsNumX
+
+            for (int i = 0; i < cellsNumY; i++) ////itt a cellak szamaig kell menjek a cellsNumX
+
             {
-                for(int j=0;j<cellsNumX;j++)
+                for (int j = 0; j < cellsNumX; j++)
                 {
-                    /* if (r.Next(0, 2) == 1)
-                         FillCell(j,i,Color.Aqua);
-                     else FillCell(j,i,Color.Black);*/
-                    if(cellSize> minCellBorder)
-                    FillCellWBorder(j, i, Color.Yellow,Color.Black);
+                   
+                    if (cellSize > minCellBorder)
+                        FillCellWBorder(j, (int)i, Color.Yellow, Color.Black);
                     else
                         FillCell(j, i, Color.Yellow);
-                    getNeigbores(j,i);/// cella nem kell tudja a szomszedjait azt kulon le kell checkolni....
-
                 }
             }
+
+            // for(int i=0;i<cellsNumY;i++) ////itt a cellak szamaig kell menjek a cellsNumX
+            Parallel.For(0, cellsNumY, i =>
+           {
+               for (int j = 0; j < cellsNumX; j++)
+
+               {
+
+                   getNeigbores(j, i);/// cella nem kell tudja a szomszedjait azt kulon le kell checkolni....
+
+               }
+           });
 
         }
 
@@ -166,8 +175,8 @@ namespace Catch_me__
            
         }
 
-
-        private void FillCellWBorder(int x,int y,Color cell,Color border)
+        
+        private   void FillCellWBorder(int x,int y,Color cell,Color border)
         {
             for (int i = 0; i < cellSize; i++)
             {
@@ -194,7 +203,7 @@ namespace Catch_me__
         }
 
 
-        internal void checkLogic()
+       public void checkLogic()
         {
            
             for(int i = 0; i < cells.GetLength(0); i++)
@@ -211,6 +220,27 @@ namespace Catch_me__
                 c.update();
             }
            
+        }
+        public void resetAllCellsState()
+        {
+            foreach(Cell c in cells)
+            {
+                c.IsAlive = false;
+                c.IsAliveNext = false;
+             
+            }
+            for (int i = 0; i < cellsNumY; i++) ////itt a cellak szamaig kell menjek a cellsNumX
+
+            {
+                for (int j = 0; j < cellsNumX; j++)
+                {
+
+                    if (cellSize > minCellBorder)
+                        FillCellWBorder(j, (int)i, Color.Yellow, Color.Black);
+                    else
+                        FillCell(j, i, Color.Yellow);
+                }
+            }
         }
     }
 }

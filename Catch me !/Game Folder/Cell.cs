@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Catch_me__
 {
-    internal class Cell
+     class Cell 
     {
       
         bool isAlive;
@@ -22,6 +22,9 @@ namespace Catch_me__
         // Live cells with fewer than two live neighbors die
         // Live cells with more than three live neighbors die
         // Dead cells with three live neighbors comes alive
+
+        //mindegyik cellat kulon threadre kene tegyem? s ugy a szomszedjait szinte instans visszakabom az egesznek s akkor az updateal nem lesz baj
+
         internal void check()
         {
             int seged = 0;

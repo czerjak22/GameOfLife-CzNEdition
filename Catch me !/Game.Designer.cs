@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panelControl = new System.Windows.Forms.Panel();
             this.checkBoxDrag = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonIterate = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.labelTest = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             // panelControl
             // 
             this.panelControl.Controls.Add(this.checkBoxDrag);
-            this.panelControl.Controls.Add(this.button1);
+            this.panelControl.Controls.Add(this.buttonIterate);
             this.panelControl.Controls.Add(this.buttonClear);
             this.panelControl.Controls.Add(this.labelTest);
             this.panelControl.Controls.Add(this.label1);
@@ -72,20 +72,21 @@
             this.checkBoxDrag.AutoSize = true;
             this.checkBoxDrag.Location = new System.Drawing.Point(36, 108);
             this.checkBoxDrag.Name = "checkBoxDrag";
-            this.checkBoxDrag.Size = new System.Drawing.Size(59, 20);
+            this.checkBoxDrag.Size = new System.Drawing.Size(100, 20);
             this.checkBoxDrag.TabIndex = 11;
-            this.checkBoxDrag.Text = "Drag";
+            this.checkBoxDrag.Text = "Drag Select";
             this.checkBoxDrag.UseVisualStyleBackColor = true;
+            this.checkBoxDrag.CheckedChanged += new System.EventHandler(this.checkBoxDrag_CheckedChanged);
             // 
-            // button1
+            // buttonIterate
             // 
-            this.button1.Location = new System.Drawing.Point(36, 475);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Iterate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonIterate.Location = new System.Drawing.Point(36, 475);
+            this.buttonIterate.Name = "buttonIterate";
+            this.buttonIterate.Size = new System.Drawing.Size(100, 28);
+            this.buttonIterate.TabIndex = 10;
+            this.buttonIterate.Text = "Iterate";
+            this.buttonIterate.UseVisualStyleBackColor = true;
+            this.buttonIterate.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonClear
             // 
@@ -190,9 +191,8 @@
             this.panelGrid.Size = new System.Drawing.Size(442, 544);
             this.panelGrid.TabIndex = 1;
             this.panelGrid.TabStop = false;
-            this.panelGrid.Click += new System.EventHandler(this.panelGrid_Click);
             this.panelGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseDown);
-            this.panelGrid.MouseHover += new System.EventHandler(this.panelGrid_MouseHover);
+            this.panelGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseMove);
             this.panelGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseUp);
             // 
             // timerMouseHold
@@ -232,7 +232,7 @@
         private System.Windows.Forms.PictureBox panelGrid;
         private System.Windows.Forms.Label labelTest;
         private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonIterate;
         private System.Windows.Forms.CheckBox checkBoxDrag;
         private System.Windows.Forms.Timer timerMouseHold;
     }
