@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,9 +10,10 @@ using System.Windows.Forms;
 
 namespace Catch_me__
 {
+  
     internal class Board
     {
-
+        public static bool gridOn = true;
         int height;
         int width;
 
@@ -21,13 +23,17 @@ namespace Catch_me__
         int cellSize;
         int minCellBorder = 5;
         public Cell[,] cells;
+
+        List<Tuple<Cell,Tuple<int,int>>> valtoztatottCellak;
+
         Bitmap bmp;
+
         public Board(int width,int height,int cellSize) 
         {
             this.height = height;
             this.width = width;
             this.cellSize = cellSize;
-            
+            valtoztatottCellak = new List<Tuple<Cell,Tuple<int,int>>>();
         }
         public int getCellsNumY()
         {
@@ -57,17 +63,34 @@ namespace Catch_me__
             CellsInit();
             
         }
-
+        //idk temporalis
         public void UpdateGrid()
         {
-            if (cellSize > minCellBorder)
+           
+                foreach (Tuple<Cell,Tuple<int,int>> c in valtoztatottCellak)
+                {////                                           j  --------->   i
+                    if (cells[c.Item2.Item1, c.Item2.Item2].IsAlive) FillCellWBorder(c.Item2.Item2, c.Item2.Item1, Color.White, Color.Violet);
+                    else FillCellWBorder(c.Item2.Item2, c.Item2.Item1, Color.Black, Color.Violet);
+                }
+                valtoztatottCellak.Clear();
+                
+        }
+           
+
+           
+
+       
+        //eredeti nem modifikalt
+        public void UpdateGrid2()
+        {
+            if (gridOn && cellSize > minCellBorder)
             {
-                     for (int i = 0; i < cellsNumY; i++) ////itt a cellak szamaig kell menjek a cellsNumX
+                for (int i = 0; i < cellsNumY; i++) ////itt a cellak szamaig kell menjek a cellsNumX
                 {
                     for (int j = 0; j < cellsNumX; j++)
                     {
-                        if (cells[i,j].IsAlive) FillCellWBorder(j, i, Color.White,Color.Violet);
-                        else FillCellWBorder(j, i, Color.Black,Color.Violet);
+                        if (cells[i, j].IsAlive) FillCellWBorder(j, i, Color.White, Color.Violet);
+                        else FillCellWBorder(j, i, Color.Black, Color.Violet);
                     }
                 }
             }
@@ -83,19 +106,32 @@ namespace Catch_me__
                 }
             }
 
-           
+
+
 
         }
         public void CellClicked(int i,int j)
         {
-            cells[i, j].IsAlive = !cells[i, j].IsAlive;
+            try
+            {
+
+                cells[i, j].IsAlive = !cells[i, j].IsAlive;
+            }
+            catch (Exception e){
+           
+            }
         }
 
      public Bitmap GetBitmap()
         {
             return bmp;
         }
-    public void setCellSize(int cellSize)
+        public void SetBitmap(Bitmap b)
+        {
+            bmp = b;
+        }
+
+        public void setCellSize(int cellSize)
         {
             this.cellSize = cellSize;
         }
@@ -118,7 +154,7 @@ namespace Catch_me__
                 for (int j = 0; j < cellsNumX; j++)
                 {
                    
-                    if (cellSize > minCellBorder)
+                    if (gridOn && cellSize > minCellBorder)
                         FillCellWBorder(j, (int)i, Color.Yellow, Color.Black);
                     else
                         FillCell(j, i, Color.Yellow);
@@ -131,7 +167,6 @@ namespace Catch_me__
                for (int j = 0; j < cellsNumX; j++)
 
                {
-
                    getNeigbores(j, i);/// cella nem kell tudja a szomszedjait azt kulon le kell checkolni....
 
                }
@@ -202,7 +237,7 @@ namespace Catch_me__
             }
         }
 
-
+       
        public void checkLogic()
         {
            
@@ -210,14 +245,17 @@ namespace Catch_me__
             {
                 for(int j=0;j< cells.GetLength(1);j++)
                 {
-                    cells[i, j].check();
+                    if (cells[i, j].check())
+                    {
+                        valtoztatottCellak.Add(Tuple.Create(cells[i,j],Tuple.Create(i, j)));
+                    }
                 }
             }
-               
-            
-            foreach (Cell c in cells)
+
+            //vector vagy queue be tarolom a megvaltoztatott cellakat s csak ott updatelelem a bitmapet
+            foreach (Tuple<Cell,Tuple<int,int>> c in valtoztatottCellak)
             {
-                c.update();
+                c.Item1.update();
             }
            
         }
@@ -244,3 +282,5 @@ namespace Catch_me__
         }
     }
 }
+
+

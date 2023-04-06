@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -7,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,9 +17,8 @@ namespace Catch_me__
     public partial class Game : UserControl
     {
         #region Variables
-        OpenFileDialog fileDialog;
-        string fileContent = string.Empty;
-        string filePath = string.Empty;
+     
+        
         Board b;
         int cellSize = 16;
 
@@ -26,6 +27,9 @@ namespace Catch_me__
         bool mouseIsDown = false;
         bool mouseDrag = false;
         Point lastModifyedCell = new Point(-1, -1);
+
+        //resize
+        bool inNeedOfResize = false;
         #endregion
 
         public Game()
@@ -75,6 +79,7 @@ namespace Catch_me__
      
         private void Game_Load(object sender, EventArgs e)
         {
+            buttonResize.Visible = false;
            b = new Board(panelGrid.Width,panelGrid.Height,cellSize);
             recalculatePixels();
          
@@ -91,16 +96,20 @@ namespace Catch_me__
             {
                 buttonTimer.Text = "Stop";
                 buttonIterate.Enabled = false;
+                buttonResize.Enabled = false;
+                buttonResize.Visible = false;
             }
             else
             {
                 buttonTimer.Text = "Start";
                 buttonIterate.Enabled = true;
+                if (buttonResize.Visible == true)
+                {
+                    buttonResize.Enabled = true;
+                }
+                inNeedOfResize = false;
             }
-               
-        
-
-
+  
     }
         private void recalculatePixels()
         {
@@ -137,7 +146,12 @@ namespace Catch_me__
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            if (megvaltozott)
+            if(inNeedOfResize)
+            {
+                PanelResizecuccom();
+                megvaltozott=false;
+            }
+            else if (megvaltozott)
             { 
             recalculatePixels();
                 megvaltozott=false;
@@ -166,26 +180,40 @@ namespace Catch_me__
         }
 
 
-     
+       Graphics g;
         private void panelGrid_MouseDown(object sender, MouseEventArgs e)
         {
-            alterCellState(e);
+          g = Graphics.FromImage(panelGrid.Image);
+          
+            alterCellState(e,false);
             if(mouseDrag)
             mouseIsDown= true;
         }
-
-        private void alterCellState(MouseEventArgs me)
+        List<Tuple<int, int>> dragedcells=new List<Tuple<int, int>>();
+      
+        private void alterCellState(MouseEventArgs me,bool draw)
         {
-            double j = Math.Ceiling(me.X / (double)cellSize) - 1;
-            double i = Math.Ceiling(me.Y / (double)cellSize) - 1;
+            int j = (int)Math.Ceiling(me.X / (double)cellSize) - 1;
+            int i = (int)Math.Ceiling(me.Y / (double)cellSize) - 1;
             if(lastModifyedCell.X==j&&lastModifyedCell.Y==i)
             {
                 return;
             }
             //ideeee......
             labelTest.Text = String.Format("X: {0} Y: {1}\n J: {2}   I: {3}\n N:{4}", me.X, me.Y, j, i, j + i * b.getCellsNumX());
-            b.CellClicked((int)i, (int)j);
-            updatePixels();
+         
+            //  b.CellClicked((int)i, (int)j);
+            dragedcells.Add(Tuple.Create<int,int>(i,j));
+
+            //  updatePixels();
+            //get and update the bitmap with a line
+            if (draw)
+            {
+                g.DrawEllipse(new Pen(Color.AntiqueWhite), me.X, me.Y, 3,3);
+                panelGrid.Refresh();
+            }
+
+
             ///idaig...... kene egy vectrot felvegyek amibe a megvaltozando cellakat eltarolom egyszerre vegigfutok
             /////s azutan egyszer updateolom a bitmapet
             //jah s kene egy bitmap feedbekk
@@ -199,26 +227,29 @@ namespace Catch_me__
         {
            mouseIsDown= false;
             lastModifyedCell = new Point(-1,-1);
+            foreach (Tuple<int, int> t in dragedcells)
+            {
+                b.CellClicked(t.Item1, t.Item2);
+            }
+            dragedcells.Clear();
+            //temporalis
+            //updatePixels();
+
+
+            b.UpdateGrid2();
+            panelGrid.Image = b.GetBitmap();
+            g = null;
         }
 
         private void panelGrid_MouseMove(object sender, MouseEventArgs e)
         {
             if(mouseIsDown)
             {
-                alterCellState(e);
+                alterCellState(e,true);
             }
         }
 
-        private void timerMouseHold_Tick(object sender, EventArgs e)
-        {
-            MessageBox.Show("Megy!");
-            MouseEventArgs me = (MouseEventArgs)e;
-            double j = Math.Ceiling(me.X / (double)cellSize) - 1;
-            double i = Math.Ceiling(me.Y / (double)cellSize) - 1;
-            labelTest.Text = String.Format("X: {0} Y: {1}\n J: {2}   I: {3}\n N:{4}", me.X, me.Y, j, i, j + i * b.getCellsNumX());
-            b.CellClicked((int)i, (int)j);
-            updatePixels();
-        }
+      
 
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -248,6 +279,53 @@ namespace Catch_me__
             mouseDrag=checkBoxDrag.Checked;
         }
 
-        
+       
+
+        private void panelGrid_Resize(object sender, EventArgs e)
+        {
+            //MessageBox.Show("igen");
+           // panelGrid.Dock= DockStyle.Fill;
+        }
+
+       
+
+        private void Game_SizeChanged(object sender, EventArgs e)
+        {
+            if (timerGame.Enabled == false)
+            {
+                timerResize.Stop();
+                timerResize.Start();
+               
+            }
+            inNeedOfResize = true;
+            buttonResize.Visible = true;
+        }
+
+        //szaaaar de egyenlore megteszi!
+        private void timerresize_Tick(object sender, EventArgs e)
+        {
+            timerResize.Stop();
+            PanelResizecuccom();
+        }
+
+        private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            Board.gridOn=checkBoxGrid.Checked;
+        }
+
+        private void buttonResize_Click(object sender, EventArgs e)
+        {
+            PanelResizecuccom();
+        }
+
+        private void PanelResizecuccom()
+        {
+            inNeedOfResize = false;
+            buttonResize.Visible = false;
+            panelGrid.Dock = DockStyle.Fill;
+            panelGrid.Image = null;
+            b = new Board(panelGrid.Width, panelGrid.Height, cellSize);
+            recalculatePixels();
+        }
     }
 }

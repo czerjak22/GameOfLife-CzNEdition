@@ -25,8 +25,13 @@ namespace Catch_me__
 
         //mindegyik cellat kulon threadre kene tegyem? s ugy a szomszedjait szinte instans visszakabom az egesznek s akkor az updateal nem lesz baj
 
-        internal void check()
+        /// <summary>
+        /// check state change, if changed return true else false;
+        /// </summary>
+        /// <returns></returns>
+        internal bool check()
         {
+            
             int seged = 0;
             foreach(Cell c in szomszedok)
             {
@@ -60,6 +65,7 @@ namespace Catch_me__
                     isAliveNext = false;
                 }
             }
+            return isAlive != isAliveNext;
         }
 
         public void update()

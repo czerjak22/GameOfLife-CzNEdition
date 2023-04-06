@@ -1,0 +1,16 @@
+﻿-grid view toggle oke
+-windows resized fix (panel strech , strech bitmap) okey
+-Drag bubbles adjust with cell size  okey
+-colors adjust with preview idk , maybe custom 
+-main menu gui update (rotating cube implement) in progress
+
+
+-a speedet upolni kene , az alap program atdolgozasa
+
+--drag grid alap initializalasa
+--vector vagy queue be tarolom a megvaltoztatott cellakat s csak ott updatelelem a bitmapet
+
+--nem jo a drag inplementaciom , kell modifikalni ....s a check /update cella funkciomat egyesitenem kell
+felget fogok hasznalni a check / update egyesitesehez
+
+//az update2 ot ki kell torolni gamat temporalis megoldas  board.cs

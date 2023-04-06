@@ -32,7 +32,7 @@ namespace Catch_me__
         #endregion
         public static void SaveToFile()
         {
-            StreamWriter ki = new StreamWriter("ki.txt");
+            StreamWriter ki = new StreamWriter("ConfigFile.txt");
             //kiiratom az adott adatokat ugy ahogy akarom 
             ///konvenciom nev space adat;
             ki.WriteLine("isMusic " + isMusic.ToString());

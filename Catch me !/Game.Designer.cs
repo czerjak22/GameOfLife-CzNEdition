@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelControl = new System.Windows.Forms.Panel();
+            this.buttonResize = new System.Windows.Forms.Button();
+            this.checkBoxGrid = new System.Windows.Forms.CheckBox();
             this.checkBoxDrag = new System.Windows.Forms.CheckBox();
             this.buttonIterate = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -42,7 +44,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.timerGame = new System.Windows.Forms.Timer(this.components);
             this.panelGrid = new System.Windows.Forms.PictureBox();
-            this.timerMouseHold = new System.Windows.Forms.Timer(this.components);
+            this.timerResize = new System.Windows.Forms.Timer(this.components);
             this.panelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCellSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelGrid)).BeginInit();
@@ -50,6 +52,8 @@
             // 
             // panelControl
             // 
+            this.panelControl.Controls.Add(this.buttonResize);
+            this.panelControl.Controls.Add(this.checkBoxGrid);
             this.panelControl.Controls.Add(this.checkBoxDrag);
             this.panelControl.Controls.Add(this.buttonIterate);
             this.panelControl.Controls.Add(this.buttonClear);
@@ -67,10 +71,35 @@
             this.panelControl.Size = new System.Drawing.Size(173, 544);
             this.panelControl.TabIndex = 0;
             // 
+            // buttonResize
+            // 
+            this.buttonResize.Location = new System.Drawing.Point(36, 510);
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.Size = new System.Drawing.Size(100, 28);
+            this.buttonResize.TabIndex = 14;
+            this.buttonResize.Text = "Resize";
+            this.buttonResize.UseVisualStyleBackColor = true;
+            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            // 
+            // checkBoxGrid
+            // 
+            this.checkBoxGrid.AutoSize = true;
+            this.checkBoxGrid.Checked = true;
+            this.checkBoxGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxGrid.Location = new System.Drawing.Point(36, 130);
+            this.checkBoxGrid.Name = "checkBoxGrid";
+            this.checkBoxGrid.Size = new System.Drawing.Size(54, 20);
+            this.checkBoxGrid.TabIndex = 13;
+            this.checkBoxGrid.Text = "Grid";
+            this.checkBoxGrid.UseVisualStyleBackColor = true;
+            this.checkBoxGrid.CheckedChanged += new System.EventHandler(this.checkBoxGrid_CheckedChanged);
+            // 
             // checkBoxDrag
             // 
             this.checkBoxDrag.AutoSize = true;
-            this.checkBoxDrag.Location = new System.Drawing.Point(36, 108);
+            this.checkBoxDrag.Checked = true;
+            this.checkBoxDrag.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDrag.Location = new System.Drawing.Point(36, 103);
             this.checkBoxDrag.Name = "checkBoxDrag";
             this.checkBoxDrag.Size = new System.Drawing.Size(100, 20);
             this.checkBoxDrag.TabIndex = 11;
@@ -101,7 +130,7 @@
             // labelTest
             // 
             this.labelTest.AutoSize = true;
-            this.labelTest.Location = new System.Drawing.Point(54, 337);
+            this.labelTest.Location = new System.Drawing.Point(64, 337);
             this.labelTest.Name = "labelTest";
             this.labelTest.Size = new System.Drawing.Size(44, 16);
             this.labelTest.TabIndex = 8;
@@ -110,7 +139,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 161);
+            this.label1.Location = new System.Drawing.Point(43, 170);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 16);
             this.label1.TabIndex = 7;
@@ -118,7 +147,7 @@
             // 
             // numericUpDownCellSize
             // 
-            this.numericUpDownCellSize.Location = new System.Drawing.Point(68, 189);
+            this.numericUpDownCellSize.Location = new System.Drawing.Point(58, 198);
             this.numericUpDownCellSize.Maximum = new decimal(new int[] {
             30,
             0,
@@ -152,7 +181,7 @@
             // lbCellsAlive
             // 
             this.lbCellsAlive.AutoSize = true;
-            this.lbCellsAlive.Location = new System.Drawing.Point(51, 263);
+            this.lbCellsAlive.Location = new System.Drawing.Point(50, 263);
             this.lbCellsAlive.Name = "lbCellsAlive";
             this.lbCellsAlive.Size = new System.Drawing.Size(73, 16);
             this.lbCellsAlive.TabIndex = 4;
@@ -181,23 +210,24 @@
             // 
             // timerGame
             // 
+            this.timerGame.Interval = 50;
             this.timerGame.Tick += new System.EventHandler(this.timerGame_Tick);
             // 
             // panelGrid
             // 
-            this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(0, 0);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(442, 544);
+            this.panelGrid.Size = new System.Drawing.Size(363, 305);
             this.panelGrid.TabIndex = 1;
             this.panelGrid.TabStop = false;
             this.panelGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseDown);
             this.panelGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseMove);
             this.panelGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseUp);
+            this.panelGrid.Resize += new System.EventHandler(this.panelGrid_Resize);
             // 
-            // timerMouseHold
+            // timerResize
             // 
-            this.timerMouseHold.Tick += new System.EventHandler(this.timerMouseHold_Tick);
+            this.timerResize.Tick += new System.EventHandler(this.timerresize_Tick);
             // 
             // Game
             // 
@@ -211,6 +241,7 @@
             this.Size = new System.Drawing.Size(615, 544);
             this.Load += new System.EventHandler(this.Game_Load);
             this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Game_Scroll);
+            this.SizeChanged += new System.EventHandler(this.Game_SizeChanged);
             this.panelControl.ResumeLayout(false);
             this.panelControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCellSize)).EndInit();
@@ -234,6 +265,8 @@
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonIterate;
         private System.Windows.Forms.CheckBox checkBoxDrag;
-        private System.Windows.Forms.Timer timerMouseHold;
+        private System.Windows.Forms.CheckBox checkBoxGrid;
+        private System.Windows.Forms.Timer timerResize;
+        private System.Windows.Forms.Button buttonResize;
     }
 }
