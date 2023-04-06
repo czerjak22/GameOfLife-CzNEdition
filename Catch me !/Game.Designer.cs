@@ -215,9 +215,10 @@
             // 
             // panelGrid
             // 
+            this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(0, 0);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(363, 305);
+            this.panelGrid.Size = new System.Drawing.Size(442, 544);
             this.panelGrid.TabIndex = 1;
             this.panelGrid.TabStop = false;
             this.panelGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelGrid_MouseDown);

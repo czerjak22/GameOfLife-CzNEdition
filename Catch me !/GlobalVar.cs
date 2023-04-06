@@ -45,7 +45,7 @@ namespace Catch_me__
 
         public static void readFromFile()
         {
-            StreamReader be = new StreamReader("ki.txt");
+            StreamReader be = new StreamReader("ConfigFile.txt");
             string[] lines = be.ReadToEnd().Trim().Split(new string[] { "\r\n" },StringSplitOptions.None);
             foreach (string i in lines)
             {
