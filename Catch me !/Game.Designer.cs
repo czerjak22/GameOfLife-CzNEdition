@@ -38,20 +38,24 @@
             this.labelTest = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDownCellSize = new System.Windows.Forms.NumericUpDown();
-            this.buttonTimer = new System.Windows.Forms.Button();
-            this.lbCellsAlive = new System.Windows.Forms.Label();
             this.buttonLoad = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.timerGame = new System.Windows.Forms.Timer(this.components);
             this.panelGrid = new System.Windows.Forms.PictureBox();
             this.timerResize = new System.Windows.Forms.Timer(this.components);
+            this.buttonTimer = new System.Windows.Forms.Button();
+            this.trackBarSpeed = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCellSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl
             // 
+            this.panelControl.Controls.Add(this.label2);
+            this.panelControl.Controls.Add(this.trackBarSpeed);
             this.panelControl.Controls.Add(this.buttonResize);
             this.panelControl.Controls.Add(this.checkBoxGrid);
             this.panelControl.Controls.Add(this.checkBoxDrag);
@@ -61,7 +65,6 @@
             this.panelControl.Controls.Add(this.label1);
             this.panelControl.Controls.Add(this.numericUpDownCellSize);
             this.panelControl.Controls.Add(this.buttonTimer);
-            this.panelControl.Controls.Add(this.lbCellsAlive);
             this.panelControl.Controls.Add(this.buttonLoad);
             this.panelControl.Controls.Add(this.buttonSave);
             this.panelControl.Dock = System.Windows.Forms.DockStyle.Right;
@@ -130,16 +133,16 @@
             // labelTest
             // 
             this.labelTest.AutoSize = true;
-            this.labelTest.Location = new System.Drawing.Point(64, 337);
+            this.labelTest.Location = new System.Drawing.Point(47, 332);
             this.labelTest.Name = "labelTest";
-            this.labelTest.Size = new System.Drawing.Size(44, 16);
+            this.labelTest.Size = new System.Drawing.Size(78, 16);
             this.labelTest.TabIndex = 8;
-            this.labelTest.Text = "label2";
+            this.labelTest.Text = "Debug Only";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 170);
+            this.label1.Location = new System.Drawing.Point(43, 171);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 16);
             this.label1.TabIndex = 7;
@@ -147,7 +150,7 @@
             // 
             // numericUpDownCellSize
             // 
-            this.numericUpDownCellSize.Location = new System.Drawing.Point(58, 198);
+            this.numericUpDownCellSize.Location = new System.Drawing.Point(58, 201);
             this.numericUpDownCellSize.Maximum = new decimal(new int[] {
             30,
             0,
@@ -167,25 +170,6 @@
             0,
             0});
             this.numericUpDownCellSize.ValueChanged += new System.EventHandler(this.numericUpDownCellSize_ValueChanged);
-            // 
-            // buttonTimer
-            // 
-            this.buttonTimer.Location = new System.Drawing.Point(36, 407);
-            this.buttonTimer.Name = "buttonTimer";
-            this.buttonTimer.Size = new System.Drawing.Size(100, 28);
-            this.buttonTimer.TabIndex = 5;
-            this.buttonTimer.Text = "Start";
-            this.buttonTimer.UseVisualStyleBackColor = true;
-            this.buttonTimer.Click += new System.EventHandler(this.buttonTimer_Click);
-            // 
-            // lbCellsAlive
-            // 
-            this.lbCellsAlive.AutoSize = true;
-            this.lbCellsAlive.Location = new System.Drawing.Point(50, 263);
-            this.lbCellsAlive.Name = "lbCellsAlive";
-            this.lbCellsAlive.Size = new System.Drawing.Size(73, 16);
-            this.lbCellsAlive.TabIndex = 4;
-            this.lbCellsAlive.Text = "Cells Alive:";
             // 
             // buttonLoad
             // 
@@ -230,6 +214,36 @@
             // 
             this.timerResize.Tick += new System.EventHandler(this.timerresize_Tick);
             // 
+            // buttonTimer
+            // 
+            this.buttonTimer.Location = new System.Drawing.Point(36, 407);
+            this.buttonTimer.Name = "buttonTimer";
+            this.buttonTimer.Size = new System.Drawing.Size(100, 28);
+            this.buttonTimer.TabIndex = 5;
+            this.buttonTimer.Text = "Start";
+            this.buttonTimer.UseVisualStyleBackColor = true;
+            this.buttonTimer.Click += new System.EventHandler(this.buttonTimer_Click);
+            // 
+            // trackBarSpeed
+            // 
+            this.trackBarSpeed.Location = new System.Drawing.Point(34, 261);
+            this.trackBarSpeed.Maximum = 300;
+            this.trackBarSpeed.Minimum = 50;
+            this.trackBarSpeed.Name = "trackBarSpeed";
+            this.trackBarSpeed.Size = new System.Drawing.Size(104, 56);
+            this.trackBarSpeed.TabIndex = 15;
+            this.trackBarSpeed.Value = 50;
+            this.trackBarSpeed.Scroll += new System.EventHandler(this.trackBarSpeed_Scroll);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(62, 242);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 16);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Speed";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -247,6 +261,7 @@
             this.panelControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCellSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,10 +270,8 @@
 
         private System.Windows.Forms.Panel panelControl;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Label lbCellsAlive;
         private System.Windows.Forms.Button buttonLoad;
         private System.Windows.Forms.Timer timerGame;
-        private System.Windows.Forms.Button buttonTimer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDownCellSize;
         private System.Windows.Forms.PictureBox panelGrid;
@@ -269,5 +282,8 @@
         private System.Windows.Forms.CheckBox checkBoxGrid;
         private System.Windows.Forms.Timer timerResize;
         private System.Windows.Forms.Button buttonResize;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar trackBarSpeed;
+        private System.Windows.Forms.Button buttonTimer;
     }
 }

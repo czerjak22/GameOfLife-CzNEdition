@@ -25,7 +25,7 @@ namespace Catch_me__
 
         //drag
         bool mouseIsDown = false;
-        bool mouseDrag = false;
+        bool mouseDrag = true;
         Point lastModifyedCell = new Point(-1, -1);
 
         //resize
@@ -43,7 +43,7 @@ namespace Catch_me__
             OpenFileDialog openFileDialog = new OpenFileDialog();
             
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Filter = "Igen files (*.igen)|*.igen";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -52,21 +52,43 @@ namespace Catch_me__
 
 
                 StreamReader reader = new StreamReader(openFileDialog.OpenFile());
-
+               
                 //itt egyszer el kell dontsem hogy mit savelek hogy tudjam beolvasni   
                 int seged = -1;
                 int.TryParse(reader.ReadLine(), out seged);
                 if(seged!= -1)
                 {
-                    cellSize= seged;
+                    cellSize= seged;    ///megvan a cell size csak nem tudo hogy akarom e hasznalni?
                     numericUpDownCellSize.Value = cellSize;
+                    timerGame.Stop();
+                    buttonTimer.Text = "Start";
+                    buttonIterate.Enabled = true;
+                    numericUpDownCellSize.Enabled = true;
                     recalculatePixels();
-                    foreach (Cell c in b.cells)
+                    /*
+                     foreach (Cell c in b.cells)
+                     {
+                         try
+                         {
+                             c.IsAlive = bool.Parse(reader.ReadLine());
+                         }catch(Exception ek){ }
+                     }*/
+                    string olvas=reader.ReadLine();
+                   while(olvas!=null)
                     {
-                        c.IsAlive = bool.Parse(reader.ReadLine());
+                        string[] splitelt=olvas.Split(' ');
+                        int y, x;
+                        int.TryParse(splitelt[0], out y);
+                        int.TryParse(splitelt[1], out x);
+
+                        //MessageBox.Show(y + " " + x);//debug only
+                        b.cells[y,x].IsAlive=true;
+                        olvas = reader.ReadLine();
                     }
-                    b.UpdateGrid();
+                    b.UpdateAllGrid();
                     panelGrid.Image = b.GetBitmap();
+                  
+
                 }
                 else
                 {
@@ -81,7 +103,7 @@ namespace Catch_me__
         {
             buttonResize.Visible = false;
            b = new Board(panelGrid.Width,panelGrid.Height,cellSize);
-            recalculatePixels();
+           // recalculatePixels();
          
             //kell egy uj board 
             //azon a boardon lesznek a cellek
@@ -98,11 +120,15 @@ namespace Catch_me__
                 buttonIterate.Enabled = false;
                 buttonResize.Enabled = false;
                 buttonResize.Visible = false;
+                numericUpDownCellSize.Enabled = false;
+
             }
             else
             {
                 buttonTimer.Text = "Start";
                 buttonIterate.Enabled = true;
+                numericUpDownCellSize.Enabled = true;
+                
                 if (buttonResize.Visible == true)
                 {
                     buttonResize.Enabled = true;
@@ -119,7 +145,7 @@ namespace Catch_me__
         }
         private void updatePixels()
         {
-            b.UpdateGrid();
+            b.UpdateGridPart();
             panelGrid.Image = b.GetBitmap();
 
         }
@@ -140,6 +166,16 @@ namespace Catch_me__
         {
             cellSize =(int) numericUpDownCellSize.Value;
             megvaltozott = true;
+            if(cellSize<=5)
+            {
+                checkBoxGrid.Enabled = false;
+                Board.gridOn = false;
+            }
+            else
+            {
+                checkBoxGrid.Enabled=true;
+                Board.gridOn = checkBoxGrid.Checked;
+            }
            
         }
 
@@ -164,6 +200,7 @@ namespace Catch_me__
                timerGame.Stop();
             buttonTimer.Text = "Start";
             buttonIterate.Enabled = true;
+            numericUpDownCellSize.Enabled = true;
 
         }
 
@@ -236,7 +273,7 @@ namespace Catch_me__
             //updatePixels();
 
 
-            b.UpdateGrid2();
+            b.UpdateAllGrid();
             panelGrid.Image = b.GetBitmap();
             g = null;
         }
@@ -264,9 +301,21 @@ namespace Catch_me__
             {
                 StreamWriter sw = new StreamWriter(sfd.OpenFile());
                 sw.WriteLine(b.getCellSize());
-              foreach(Cell c in b.cells)
+             /* foreach(Cell c in b.cells)
                 {
                     sw.WriteLine(c.IsAlive);
+                }*/
+             int segedx=b.getCellsNumX();
+             int segedy=b.getCellsNumY();
+             for(int i=0;i<segedy;i++)
+                {
+                    for(int j=0;j<segedx;j++)
+                    {
+                        if (b.cells[i,j].IsAlive)
+                        {
+                            sw.WriteLine(i+" "+ j);
+                        }
+                    }
                 }
           
                 sw.Close();
@@ -311,6 +360,9 @@ namespace Catch_me__
         private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
             Board.gridOn=checkBoxGrid.Checked;
+
+            b.UpdateAllGrid();
+            panelGrid.Image = b.GetBitmap();
         }
 
         private void buttonResize_Click(object sender, EventArgs e)
@@ -326,6 +378,11 @@ namespace Catch_me__
             panelGrid.Image = null;
             b = new Board(panelGrid.Width, panelGrid.Height, cellSize);
             recalculatePixels();
+        }
+
+        private void trackBarSpeed_Scroll(object sender, EventArgs e)
+        {
+            timerGame.Interval = trackBarSpeed.Value;
         }
     }
 }

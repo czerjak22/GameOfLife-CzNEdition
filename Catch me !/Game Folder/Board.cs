@@ -19,7 +19,10 @@ namespace Catch_me__
 
         int cellsNumX;
         int cellsNumY;
-
+        Color cellActive = Color.White;
+        Color cellInActiv = Color.Black;
+        Color border = Color.Violet;
+        Color initCell= Color.Blue;
         int cellSize;
         int minCellBorder = 5;
         public Cell[,] cells;
@@ -64,15 +67,29 @@ namespace Catch_me__
             
         }
         //idk temporalis
-        public void UpdateGrid()
+        public void UpdateGridPart()
         {
-           
-                foreach (Tuple<Cell,Tuple<int,int>> c in valtoztatottCellak)
-                {////                                           j  --------->   i
-                    if (cells[c.Item2.Item1, c.Item2.Item2].IsAlive) FillCellWBorder(c.Item2.Item2, c.Item2.Item1, Color.White, Color.Violet);
-                    else FillCellWBorder(c.Item2.Item2, c.Item2.Item1, Color.Black, Color.Violet);
+
+            foreach (Tuple<Cell, Tuple<int, int>> c in valtoztatottCellak) {
+                ////                                           j  --------->   i
+
+                switch (gridOn)
+                {
+                    case true:
+
+                        if (cells[c.Item2.Item1, c.Item2.Item2].IsAlive) FillCellWBorder(c.Item2.Item2, c.Item2.Item1,cellActive,border);
+                        else FillCellWBorder(c.Item2.Item2, c.Item2.Item1, cellInActiv,border);
+                        break; 
+                    case false:
+
+                        if (cells[c.Item2.Item1, c.Item2.Item2].IsAlive) FillCell(c.Item2.Item2, c.Item2.Item1, cellActive);
+                        else FillCell(c.Item2.Item2, c.Item2.Item1,cellInActiv);
+                        break;
+
                 }
+            }
                 valtoztatottCellak.Clear();
+            
                 
         }
            
@@ -81,7 +98,7 @@ namespace Catch_me__
 
        
         //eredeti nem modifikalt
-        public void UpdateGrid2()
+        public void UpdateAllGrid()
         {
             if (gridOn && cellSize > minCellBorder)
             {
@@ -89,8 +106,8 @@ namespace Catch_me__
                 {
                     for (int j = 0; j < cellsNumX; j++)
                     {
-                        if (cells[i, j].IsAlive) FillCellWBorder(j, i, Color.White, Color.Violet);
-                        else FillCellWBorder(j, i, Color.Black, Color.Violet);
+                        if (cells[i, j].IsAlive) FillCellWBorder(j, i, cellActive, border);
+                        else FillCellWBorder(j, i, cellInActiv, border);
                     }
                 }
             }
@@ -100,8 +117,8 @@ namespace Catch_me__
                 {
                     for (int j = 0; j < cellsNumX; j++)
                     {
-                        if (cells[i, j].IsAlive) FillCell(j, i, Color.White);
-                        else FillCell(j, i, Color.Black);
+                        if (cells[i, j].IsAlive) FillCell(j, i,cellActive);
+                        else FillCell(j, i, cellInActiv);
                     }
                 }
             }
@@ -155,9 +172,9 @@ namespace Catch_me__
                 {
                    
                     if (gridOn && cellSize > minCellBorder)
-                        FillCellWBorder(j, (int)i, Color.Yellow, Color.Black);
+                        FillCellWBorder(j, (int)i, initCell, border);
                     else
-                        FillCell(j, i, Color.Yellow);
+                        FillCell(j, i, initCell);
                 }
             }
 

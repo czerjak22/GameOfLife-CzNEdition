@@ -5,12 +5,24 @@
 -main menu gui update (rotating cube implement) in progress
 
 
--a speedet upolni kene , az alap program atdolgozasa
+-a speedet upolni kene , az alap program atdolgozasa okey
 
---drag grid alap initializalasa
---vector vagy queue be tarolom a megvaltoztatott cellakat s csak ott updatelelem a bitmapet
+
+resize eseten a contentet megtartani/croppolni...
 
 --nem jo a drag inplementaciom , kell modifikalni ....s a check /update cella funkciomat egyesitenem kell
-felget fogok hasznalni a check / update egyesitesehez
+felget fogok hasznalni a check / update egyesitesehez  //talan
+
 
 //az update2 ot ki kell torolni gamat temporalis megoldas  board.cs
+
+
+
+--customizalas:
+//overtime color change
+//hang?
+
+bugg:LOAD /save nal a cellaknak a pozitiojat kell elmentenem
+
+
+

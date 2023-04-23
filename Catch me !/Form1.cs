@@ -13,29 +13,27 @@ namespace Catch_me__
 {
     public partial class Form1 : Form
     {
-        private Game game1;
+        private Game game;
         public Form1()
         {
             InitializeComponent();
-            //MainPanel();
-            //makeNewGame();
-
             GlobalVar.readFromFile();
+            
             //ez nem megy mindig le talan tul rovid????
-         //    SoundPlayer g = new SoundPlayer("igen.wav");
-        //g.Play();
+            //    SoundPlayer g = new SoundPlayer("igen.wav");
+            // g.Play();
             //xd
             //SystemSounds.Hand.Play();
-            
-            
-            
+
+
+
         }
 
 
         public void menuToOptions()
         {
             mainMenuStatic.Visible = false;
-            //	controlPanelStatic.Visible = true;
+           	controlPanelStatic.Visible = true;
 
         }
         public void optionsToMenu()
@@ -46,15 +44,15 @@ namespace Catch_me__
         public void makeNewGame()
         {
 
-            this.Controls.Remove(this.game1);
-            game1 = new Game();
-            this.game1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.game1.Location = new System.Drawing.Point(0, 0);
-            this.game1.Name = "game1";
-            this.game1.Size = new System.Drawing.Size(461, 442);
-            this.game1.TabIndex = 2;
-            this.Controls.Add(this.game1);
-            game1.Dock=DockStyle.Fill;
+            this.Controls.Remove(this.game);
+            game = new Game();
+            this.game.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.game.Location = new System.Drawing.Point(0, 0);
+            this.game.Name = "game1";
+            this.game.Size = new System.Drawing.Size(461, 442);
+            this.game.TabIndex = 2;
+            this.Controls.Add(this.game);
+            game.Dock=DockStyle.Fill;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -65,5 +63,7 @@ namespace Catch_me__
 
             GlobalVar.SaveToFile();
         }
+
+      
     }
 }

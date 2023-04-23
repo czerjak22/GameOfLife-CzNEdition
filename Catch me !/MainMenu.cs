@@ -16,7 +16,8 @@ namespace Catch_me__
         public MainMenu()
         {
             InitializeComponent();
-           // playBtn.Location=new Point(Width/2,playBtn.Location.Y);
+
+            Select();//deselects all items
 
         }
 
@@ -24,8 +25,8 @@ namespace Catch_me__
         {
             this.Visible = false;
             //nem jo  mar a meglevo jatekot nyissa meg
-            //torulnom kell a gam user formot
-            //s azutan egy ujat kell rakjak a helebe
+            //torulnom kell a game user formot
+            //s azutan egy ujat kell rakjak a helyebe
 
             /* var p = Parent.Controls.OfType<Game>().FirstOrDefault();
 
@@ -46,5 +47,7 @@ namespace Catch_me__
             if (p != null) p.Visible = true;
 
         }
+
+      
     }
 }
