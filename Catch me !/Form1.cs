@@ -14,38 +14,35 @@ namespace Catch_me__
     public partial class Form1 : Form
     {
         private Game game;
+        public SoundManager Sounds;
         public Form1()
         {
-            InitializeComponent();
             GlobalVar.readFromFile();
-            
-            //ez nem megy mindig le talan tul rovid????
-            //    SoundPlayer g = new SoundPlayer("igen.wav");
-            // g.Play();
-            //xd
-            //SystemSounds.Hand.Play();
-
-
+            Sounds= new SoundManager();
+            InitializeComponent();
+            Sounds.backgroundMusicStart();
 
         }
+        /// <summary>
+        /// nem igyh hasznalom hanem mindegyik user controlban megkeresem a form1 et annak az adott usercontroljat befolyasolom...
+        /// </summary>
 
-
-        public void menuToOptions()
+     /*   public void menuToOptions()
         {
             mainMenuStatic.Visible = false;
            	controlPanelStatic.Visible = true;
 
-        }
-        public void optionsToMenu()
+        }*/
+        /*public void optionsToMenu()
         {
             mainMenuStatic.Visible = true;
             controlPanelStatic.Visible = false;
-        }
+        }*/
         public void makeNewGame()
         {
 
             this.Controls.Remove(this.game);
-            game = new Game();
+            game = new Game(Sounds);
             this.game.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.game.Location = new System.Drawing.Point(0, 0);
             this.game.Name = "game1";
@@ -63,7 +60,5 @@ namespace Catch_me__
 
             GlobalVar.SaveToFile();
         }
-
-      
     }
 }

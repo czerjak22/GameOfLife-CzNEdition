@@ -50,6 +50,7 @@
             this.costumizeBtn.TabStop = false;
             this.costumizeBtn.Text = "Customize";
             this.costumizeBtn.UseVisualStyleBackColor = false;
+            this.costumizeBtn.Click += new System.EventHandler(this.costumizeBtn_Click);
             // 
             // mainActraction
             // 

@@ -30,16 +30,21 @@ namespace Catch_me__
 
         //resize
         bool inNeedOfResize = false;
+
+        //sound
+        SoundManager sfx;
         #endregion
 
-        public Game()
+        public Game(SoundManager s)
         {
+            this.sfx = s;
             InitializeComponent();
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
             // fileDialog=new OpenFileDialog();
+            sfx.PlayClick();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             
                 openFileDialog.InitialDirectory = "c:\\";
@@ -82,7 +87,11 @@ namespace Catch_me__
                         int.TryParse(splitelt[1], out x);
 
                         //MessageBox.Show(y + " " + x);//debug only
-                        b.cells[y,x].IsAlive=true;
+                        try
+                        {
+                            b.cells[y, x].IsAlive = true;
+                        }
+                        catch (Exception ek) { }
                         olvas = reader.ReadLine();
                     }
                     b.UpdateAllGrid();
@@ -112,7 +121,8 @@ namespace Catch_me__
 
         private void buttonTimer_Click(object sender, EventArgs e)
         {
-           // recalculatePixels();
+            sfx.PlayClick();
+            // recalculatePixels();
             timerGame.Enabled=!timerGame.Enabled;
             if(buttonTimer.Text=="Start")
             {
@@ -164,8 +174,10 @@ namespace Catch_me__
         bool megvaltozott = false;
         private void numericUpDownCellSize_ValueChanged(object sender, EventArgs e)
         {
+            sfx.PlayClick();
             cellSize =(int) numericUpDownCellSize.Value;
             megvaltozott = true;
+            buttonRe.Enabled = true;
             if(cellSize<=5)
             {
                 checkBoxGrid.Enabled = false;
@@ -182,9 +194,10 @@ namespace Catch_me__
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            if(inNeedOfResize)
+            sfx.PlayClick();
+            if (inNeedOfResize)
             {
-                PanelResizecuccom();
+                PanelResize();
                 megvaltozott=false;
             }
             else if (megvaltozott)
@@ -212,6 +225,7 @@ namespace Catch_me__
 
         private void button1_Click(object sender, EventArgs e)
         {
+            sfx.PlayClick();
             b.checkLogic();
             updatePixels();
         }
@@ -291,7 +305,8 @@ namespace Catch_me__
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-           SaveFileDialog sfd=new SaveFileDialog();
+            sfx.PlayClick();
+            SaveFileDialog sfd=new SaveFileDialog();
             sfd.Filter = "hello|*.igen";
             sfd.Title="Save the current state of the grid!";
            
@@ -325,7 +340,8 @@ namespace Catch_me__
 
         private void checkBoxDrag_CheckedChanged(object sender, EventArgs e)
         {
-            mouseDrag=checkBoxDrag.Checked;
+            sfx.PlayClick();
+            mouseDrag =checkBoxDrag.Checked;
         }
 
        
@@ -354,11 +370,12 @@ namespace Catch_me__
         private void timerresize_Tick(object sender, EventArgs e)
         {
             timerResize.Stop();
-            PanelResizecuccom();
+            PanelResize();
         }
 
         private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
+            sfx.PlayClick();
             Board.gridOn=checkBoxGrid.Checked;
 
             b.UpdateAllGrid();
@@ -367,22 +384,66 @@ namespace Catch_me__
 
         private void buttonResize_Click(object sender, EventArgs e)
         {
-            PanelResizecuccom();
+            sfx.PlayClick();
+            PanelResize();
         }
 
-        private void PanelResizecuccom()
+        private void PanelResize()// ezt le kell csereljem hogy mentse el a pixeleket
         {
             inNeedOfResize = false;
             buttonResize.Visible = false;
+            if (panelGrid.Width != 0&& b!=null&&b.getWidth() != panelGrid.Width)///ha levisszuk a talcara akkor nem csinal semmit!
+            { 
             panelGrid.Dock = DockStyle.Fill;
             panelGrid.Image = null;
-            b = new Board(panelGrid.Width, panelGrid.Height, cellSize);
-            recalculatePixels();
+            //b = new Board(panelGrid.Width, panelGrid.Height, cellSize);
+           b.Height= panelGrid.Height;
+                b.Width= panelGrid.Width;
+                b.setCellSize(cellSize);
+
+                // recalculatePixels();//reszetalja a regi modszer szerint az egesz grid et , nem tarolja el azt
+                expandPixels();
+        }
+        }
+
+        private void expandPixels()
+        {
+            b.setCellSize(cellSize);
+            b.CalculateGridSaveOld();
+            panelGrid.Image = b.GetBitmap();
         }
 
         private void trackBarSpeed_Scroll(object sender, EventArgs e)
         {
             timerGame.Interval = trackBarSpeed.Value;
+        }
+
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            sfx.PlayClick();
+            var p = Parent.Controls.OfType<MainMenu>().FirstOrDefault();
+            DialogResult result = MessageBox.Show("Are you sure you want to return to the menu?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(result==DialogResult.Yes)
+            {
+                if (p != null)
+                {
+                    p.Visible = true;
+                    Dispose();
+                }
+                else MessageBox.Show("Error when exiting! Please try restarting the app!");
+            }
+            
+        }
+
+        private void buttonRe_Click(object sender, EventArgs e)
+        {
+            buttonRe.Enabled = false;
+            b.setCellSize(cellSize);
+            b.CalculateGridSaveOld();
+            panelGrid.Image = b.GetBitmap();
+          
+
         }
     }
 }

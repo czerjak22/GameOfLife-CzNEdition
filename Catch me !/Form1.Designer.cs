@@ -28,10 +28,21 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.controlPanelStatic = new Catch_me__.ControlPanel();
-            this.game = new Catch_me__.Game();
-            this.mainMenuStatic = new Catch_me__.MainMenu();
+            this.mainMenuStatic = new Catch_me__.MainMenu(Sounds);
+            this.controlPanelStatic = new Catch_me__.ControlPanel(Sounds);
+            this.customMenuStatic = new Catch_me__.CustomMenu(Sounds);
+            this.game = new Catch_me__.Game(Sounds);
             this.SuspendLayout();
+            // 
+            // mainMenuStatic
+            // 
+            this.mainMenuStatic.BackColor = System.Drawing.Color.IndianRed;
+            this.mainMenuStatic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainMenuStatic.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStatic.Margin = new System.Windows.Forms.Padding(4);
+            this.mainMenuStatic.Name = "mainMenuStatic";
+            this.mainMenuStatic.Size = new System.Drawing.Size(615, 544);
+            this.mainMenuStatic.TabIndex = 1;
             // 
             // controlPanelStatic
             // 
@@ -44,24 +55,24 @@
             this.controlPanelStatic.TabIndex = 0;
             this.controlPanelStatic.Visible = false;
             // 
-            // game1
+            // customMenuStatic
+            // 
+            this.customMenuStatic.BackColor = System.Drawing.Color.Tomato;
+            this.customMenuStatic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customMenuStatic.Location = new System.Drawing.Point(0, 0);
+            this.customMenuStatic.Name = "customMenuStatic";
+            this.customMenuStatic.Size = new System.Drawing.Size(615, 544);
+            this.customMenuStatic.TabIndex = 2;
+            this.customMenuStatic.Visible = false;
+            // 
+            // game
             // 
             this.game.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.game.Location = new System.Drawing.Point(0, 0);
             this.game.Margin = new System.Windows.Forms.Padding(4);
-            this.game.Name = "game1";
+            this.game.Name = "game";
             this.game.Size = new System.Drawing.Size(615, 544);
             this.game.TabIndex = 0;
-            // 
-            // mainMenuStatic
-            // 
-            this.mainMenuStatic.BackColor = System.Drawing.Color.IndianRed;
-            this.mainMenuStatic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainMenuStatic.Location = new System.Drawing.Point(0, 0);
-            this.mainMenuStatic.Margin = new System.Windows.Forms.Padding(4);
-            this.mainMenuStatic.Name = "mainMenuStatic";
-            this.mainMenuStatic.Size = new System.Drawing.Size(615, 544);
-            this.mainMenuStatic.TabIndex = 1;
             // 
             // Form1
             // 
@@ -71,6 +82,7 @@
             this.ClientSize = new System.Drawing.Size(615, 544);
             this.Controls.Add(this.mainMenuStatic);
             this.Controls.Add(this.controlPanelStatic);
+            this.Controls.Add(this.customMenuStatic);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(633, 591);
             this.Name = "Form1";
@@ -87,6 +99,7 @@
        
         private ControlPanel controlPanelStatic;
         private MainMenu mainMenuStatic;
+        private CustomMenu customMenuStatic;
     }
 }
 

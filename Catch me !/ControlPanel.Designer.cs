@@ -42,7 +42,7 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(216, 36);
+            this.label1.Location = new System.Drawing.Point(219, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 79);
@@ -52,7 +52,7 @@
             // 
             // ReturnBtn
             // 
-            this.ReturnBtn.Location = new System.Drawing.Point(204, 455);
+            this.ReturnBtn.Location = new System.Drawing.Point(201, 455);
             this.ReturnBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ReturnBtn.Name = "ReturnBtn";
             this.ReturnBtn.Size = new System.Drawing.Size(213, 52);
@@ -90,10 +90,13 @@
             // 
             this.musicBar.Location = new System.Drawing.Point(373, 217);
             this.musicBar.Margin = new System.Windows.Forms.Padding(4);
+            this.musicBar.Maximum = 100;
             this.musicBar.Minimum = 1;
             this.musicBar.Name = "musicBar";
             this.musicBar.Size = new System.Drawing.Size(212, 56);
+            this.musicBar.SmallChange = 5;
             this.musicBar.TabIndex = 7;
+            this.musicBar.TickFrequency = 10;
             this.musicBar.Value = 1;
             this.musicBar.Scroll += new System.EventHandler(this.musicBar_Scroll);
             // 
@@ -101,9 +104,12 @@
             // 
             this.soundBar.Location = new System.Drawing.Point(44, 217);
             this.soundBar.Margin = new System.Windows.Forms.Padding(4);
+            this.soundBar.Maximum = 100;
             this.soundBar.Name = "soundBar";
             this.soundBar.Size = new System.Drawing.Size(212, 56);
+            this.soundBar.SmallChange = 5;
             this.soundBar.TabIndex = 8;
+            this.soundBar.TickFrequency = 10;
             this.soundBar.Scroll += new System.EventHandler(this.soundBar_Scroll);
             // 
             // ControlPanel

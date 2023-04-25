@@ -13,10 +13,14 @@ namespace Catch_me__
 {
     public partial class ControlPanel : UserControl
     {
-        public ControlPanel()
+        SoundManager sfx;
+        public ControlPanel(SoundManager s)
         {
+            sfx = s;
             InitializeComponent();
             InitializeValues();
+           
+
 
         }
 
@@ -34,7 +38,7 @@ namespace Catch_me__
         private void ReturnBtn_Click(object sender, EventArgs e)
         {
              this.Visible = false;
-
+            sfx.PlayClick();
             var p = Parent.Controls.OfType<MainMenu>().FirstOrDefault();
 
             if (p != null) p.Visible = true;
@@ -45,6 +49,7 @@ namespace Catch_me__
            
             musicBar.Enabled = musicCkb.Checked;
             GlobalVar.IsMusic = musicCkb.Checked;
+            sfx.musicEnabled(musicCkb.Checked);
 
         }
 
@@ -57,18 +62,20 @@ namespace Catch_me__
         {
             soundBar.Enabled = soundsCkb.Checked;
             GlobalVar.IsSounds = soundsCkb.Checked;
+            sfx.sfxenabled(soundsCkb.Checked);
         }
 
         private void soundBar_Scroll(object sender, EventArgs e)
         {
             //ide meg kell irjam az ertek a menteset 
             GlobalVar.SoundBarValue=soundBar.Value;
-          
+            sfx.buttonVolumeAdjust(soundBar.Value);
         }
 
         private void musicBar_Scroll(object sender, EventArgs e)
         {
-           GlobalVar.MusicBarValue=musicBar.Value;  
+           GlobalVar.MusicBarValue=musicBar.Value;
+            sfx.backgroundMusicVolumeAdjust(musicBar.Value);
         }
     }
 }

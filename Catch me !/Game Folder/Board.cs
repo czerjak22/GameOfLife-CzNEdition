@@ -31,42 +31,135 @@ namespace Catch_me__
 
         Bitmap bmp;
 
+
+
+        #region gettersSetters
+
+        public int Height { get => height; set => height = value; }
+        public int Width { get => width; set => width = value; }
+        public Bitmap GetBitmap()
+        {
+            return bmp;
+        }
+        public void SetBitmap(Bitmap b)
+        {
+            bmp = b;
+        }
+
+        public void setCellSize(int cellSize)
+        {
+            this.cellSize = cellSize;
+        }
+        public int getCellSize()
+        {
+            return cellSize;
+        }
+        public int getCellsNumY()
+        {
+            return cellsNumY;
+        }
+
+        public int getCellsNumX()
+        {
+            return cellsNumX;
+        }
+
+        /// <summary>
+        /// it return the widt that was initialized with the board
+        /// </summary>
+        /// <returns></returns>
+        public int getWidth()
+        {
+            return width;
+        }
+        #endregion
+
         public Board(int width,int height,int cellSize) 
         {
             this.height = height;
             this.width = width;
             this.cellSize = cellSize;
             valtoztatottCellak = new List<Tuple<Cell,Tuple<int,int>>>();
+            cellActive = GlobalVar.CellActive;
+            cellInActiv = GlobalVar.CellInactive;
+            border=GlobalVar.Border;
+            initCell= GlobalVar.InitCell;
         }
-        public int getCellsNumY()
-        {
-            return cellsNumY;   
-        } 
-        public int getCellsNumX()
-        {
-            return cellsNumX;   
-        }
+
+
         public void CalculateGrid()
         {
-           cellsNumX=width/cellSize;
-           //cellsNumX=1000;
-           //cellsNumX=1000;
-            cellsNumY=height/cellSize;
-          
-            cells=new Cell[cellsNumY,cellsNumX];
-            bmp= new Bitmap(width,height);
-            for(int i=0; i<cellsNumY; i++)
-            {
-                for(int j=0;j<cellsNumX;j++)
-                {
-                    cells[i,j] = new Cell();
-                    cells[i,j].IsAlive = false;
-                }
-            }
-            CellsInit();
+           
+                cellsNumX = width / cellSize;
+                cellsNumY = height / cellSize;
+
+                cells = new Cell[cellsNumY, cellsNumX];
+                bmp = new Bitmap(width, height);
+            //regi for
+          //  for (int i = 0; i < cellsNumY; i++)
+                Parallel.For(0, cellsNumY, i =>    //elvileg gyorsabb mert multithread
+             {
+                 for (int j = 0; j < cellsNumX; j++)
+                 {
+                     cells[i, j] = new Cell();
+                     cells[i, j].IsAlive = false;
+                 }
+             });
+                CellsInit();
             
         }
-        //idk temporalis
+
+        public void CalculateGridSaveOld()
+        {
+            if (cells == null)//ha legelsobszor van meghivva mikor meg nem volt a cell , nincs mit elmentsen , genarald le uresen a cellakat
+            {
+                CalculateGrid();
+                return;
+            }
+            //lehet hogy lassu leszszz...
+          //elmentem a valuekat egy seged tombe
+            bool[,] seged=new bool[cellsNumY, cellsNumX];
+            Parallel.For(0, cellsNumY, i =>    //elvileg gyorsabb mert multithread
+            {
+                for (int j = 0; j < cellsNumX; j++)
+                {
+                    seged[i, j] = cells[i,j].IsAlive;
+                }
+            });
+
+            cellsNumX = width / cellSize;
+            cellsNumY = height / cellSize;
+            cells = new Cell[cellsNumY, cellsNumX];
+            bmp = new Bitmap(width, height);
+
+
+
+            Parallel.For(0, cellsNumY, i =>    //elvileg gyorsabb mert multithread
+            {
+                for (int j = 0; j < cellsNumX; j++)
+                {
+                    cells[i, j] = new Cell();
+                    try
+                    {
+                        cells[i, j].IsAlive = seged[i, j];
+                    }catch(Exception e)
+                    {
+                        cells[i, j].IsAlive=false;
+                    }
+                }
+            });
+            Parallel.For(0, cellsNumY, i =>
+            {
+                for (int j = 0; j < cellsNumX; j++)
+
+                {
+                    getNeigbores(j, i);/// cella nem kell tudja a szomszedjait azt kulon le kell checkolni....
+
+                }
+            });
+            UpdateAllGrid();
+        }
+        //csak azokat a helyeket nezi ahol kell valamit csinalni...
         public void UpdateGridPart()
         {
 
@@ -138,24 +231,7 @@ namespace Catch_me__
            
             }
         }
-
-     public Bitmap GetBitmap()
-        {
-            return bmp;
-        }
-        public void SetBitmap(Bitmap b)
-        {
-            bmp = b;
-        }
-
-        public void setCellSize(int cellSize)
-        {
-            this.cellSize = cellSize;
-        }
-        public int getCellSize()
-        {
-            return cellSize;
-        }
+      
         //kell initializalni a celleket s a szomszedjaikat
         //a listanak a nagysagat le kell fixelni
 
@@ -163,7 +239,7 @@ namespace Catch_me__
         //vagy veszek egy cellanyi bitmapet amit majd scalelek....
         public void CellsInit()
         {
-            Random r= new Random();
+           
 
             for (int i = 0; i < cellsNumY; i++) ////itt a cellak szamaig kell menjek a cellsNumX
 
@@ -201,6 +277,7 @@ namespace Catch_me__
             int minOsz = j - 1 < 0 ? j : j - 1;
             int maxOsz = j + 1 > cells.GetLength(1) ? j : j + 1;
             for(int h=minSor;h<=maxSor;h++)
+           // Parallel.For(minSor,maxSor+1,h=>
             {
                 for(int k=minOsz;k<=maxOsz;k++ )
                 {
@@ -209,7 +286,7 @@ namespace Catch_me__
                         cells[i, j].Szomszedok.Add(cells[h, k]);
                     }
                 }
-            }
+            }//);
           
         }
 
@@ -239,6 +316,8 @@ namespace Catch_me__
                         bmp.SetPixel(x*cellSize+i, y*cellSize+j, cell);
                 }
             }
+
+            bmp.SetPixel(bmp.Width / 2, bmp.Height / 2, Color.Red);
         }
 
         private void FillCell(int x, int y, Color cell)
@@ -252,6 +331,7 @@ namespace Catch_me__
                         bmp.SetPixel(x * cellSize + i, y * cellSize + j, cell);
                 }
             }
+            bmp.SetPixel(bmp.Width / 2, bmp.Height / 2, Color.Red);
         }
 
        
@@ -291,9 +371,9 @@ namespace Catch_me__
                 {
 
                     if (cellSize > minCellBorder)
-                        FillCellWBorder(j, (int)i, Color.Yellow, Color.Black);
+                        FillCellWBorder(j, (int)i, border, cellInActiv);
                     else
-                        FillCell(j, i, Color.Yellow);
+                        FillCell(j, i, cellInActiv);
                 }
             }
         }
