@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 
-namespace Catch_me__
+namespace CIG
 {
     public class SoundManager
     {

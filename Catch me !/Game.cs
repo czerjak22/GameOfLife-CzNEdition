@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Catch_me__
+namespace CIG
 {
     public partial class Game : UserControl
     {

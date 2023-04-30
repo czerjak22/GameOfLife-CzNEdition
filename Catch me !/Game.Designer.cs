@@ -1,4 +1,4 @@
-﻿namespace Catch_me__
+﻿namespace CIG
 {
     partial class Game
     {

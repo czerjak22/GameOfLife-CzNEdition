@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Catch_me__
+namespace CIG
 {
 	partial class Form1
 	{
@@ -33,10 +33,10 @@ namespace Catch_me__
           //  this.mainMenuStatic = new Catch_me__.MainMenu(Sounds);
            // this.controlPanelStatic = new Catch_me__.ControlPanel(Sounds);
            // this.customMenuStatic = new Catch_me__.CustomMenu(Sounds);
-            this.mainMenuStatic = new Catch_me__.MainMenu(Sounds);
-            this.controlPanelStatic = new Catch_me__.ControlPanel(Sounds);
-            this.customMenuStatic = new Catch_me__.CustomMenu(Sounds);
-            this.aboutMenuStatic = new Catch_me__.About();
+            this.mainMenuStatic = new CIG.MainMenu(Sounds);
+            this.controlPanelStatic = new CIG.ControlPanel(Sounds);
+            this.customMenuStatic = new CIG.CustomMenu(Sounds);
+            this.aboutMenuStatic = new CIG.About();
  
             this.SuspendLayout();
 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Catch_me__
+namespace CIG
 {
     public partial class About : UserControl
     {

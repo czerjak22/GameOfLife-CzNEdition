@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Catch_me__
+namespace CIG
 {
 	static class Program
 	{

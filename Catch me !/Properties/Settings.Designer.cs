@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Catch_me__.Properties {
+namespace CIG.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

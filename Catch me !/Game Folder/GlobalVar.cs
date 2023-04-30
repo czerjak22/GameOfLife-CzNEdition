@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 
 
-namespace Catch_me__
+namespace CIG
 {
     internal static class GlobalVar
     {

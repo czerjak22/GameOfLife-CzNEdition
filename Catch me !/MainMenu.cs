@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
-namespace Catch_me__
+namespace CIG
 {
     public partial class MainMenu : UserControl
     {
