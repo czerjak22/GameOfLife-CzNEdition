@@ -15,8 +15,9 @@ namespace Catch_me__
     public partial class MainMenu : UserControl
     {
         SoundManager sfx;
+
+
      
- 
         public MainMenu(SoundManager s)
         {
             this.sfx = s;
@@ -61,6 +62,24 @@ namespace Catch_me__
             var p = Parent.Controls.OfType<CustomMenu>().FirstOrDefault();
 
             if (p != null) p.Visible = true;
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+            sfx.PlayClick();
+            //MessageBox.Show("Szamalyok....");
+            var p = Parent.Controls.OfType<About>().FirstOrDefault();
+
+            if (p != null)
+            {
+                p.Visible = true;
+                p.BringToFront();
+            }
+            else
+            {
+                MessageBox.Show("Nem kapott");
+            }
         }
     }
 }

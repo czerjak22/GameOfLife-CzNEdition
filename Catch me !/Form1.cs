@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Catch_me__.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +19,16 @@ namespace Catch_me__
         public Form1()
         {
             GlobalVar.readFromFile();
-            Sounds= new SoundManager();
+            try
+            {
+                Icon = new Icon("cube.ico");
+            }
+            catch { MessageBox.Show("No Icon found sticking with default"); }
+              Sounds= new SoundManager();
+         
+            //  this.Icon = ic;
             InitializeComponent();
+            aboutMenuStatic.Visible=false;
             Sounds.backgroundMusicStart();
 
         }

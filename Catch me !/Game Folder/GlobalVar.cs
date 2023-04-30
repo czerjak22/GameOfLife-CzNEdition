@@ -57,7 +57,17 @@ namespace Catch_me__
 
         public static void readFromFile()
         {
-            StreamReader be = new StreamReader("ConfigFile.txt");
+            StreamReader be;
+            try
+            {
+                be = new StreamReader("ConfigFile.txt");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nem talalhato a config file\n"+ex.Message);
+                return;
+            }
+          
             string[] lines = be.ReadToEnd().Trim().Split(new string[] { "\r\n" },StringSplitOptions.None);
             foreach (string i in lines)
             {

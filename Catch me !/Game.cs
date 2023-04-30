@@ -161,6 +161,7 @@ namespace Catch_me__
         }
         private void Game_Scroll(object sender, ScrollEventArgs e)
         {
+            /*
             if (e.OldValue > e.NewValue)
             {
                 cellSize--;
@@ -169,7 +170,7 @@ namespace Catch_me__
             {
                 cellSize++;
             }
-            recalculatePixels();
+            recalculatePixels();*/
         }
         bool megvaltozott = false;
         private void numericUpDownCellSize_ValueChanged(object sender, EventArgs e)
@@ -234,34 +235,37 @@ namespace Catch_me__
        Graphics g;
         private void panelGrid_MouseDown(object sender, MouseEventArgs e)
         {
-          g = Graphics.FromImage(panelGrid.Image);
+            tmp = (Bitmap)panelGrid.Image.Clone() ;
+            g = Graphics.FromImage(tmp);///clonozom a jelenlegi imaget arra rajzolok aztan majd felulirom ><
           
             alterCellState(e,false);
             if(mouseDrag)
             mouseIsDown= true;
         }
         List<Tuple<int, int>> dragedcells=new List<Tuple<int, int>>();
-      
+        Bitmap tmp;
         private void alterCellState(MouseEventArgs me,bool draw)
         {
             int j = (int)Math.Ceiling(me.X / (double)cellSize) - 1;
             int i = (int)Math.Ceiling(me.Y / (double)cellSize) - 1;
+           
             if(lastModifyedCell.X==j&&lastModifyedCell.Y==i)
             {
                 return;
             }
-            //ideeee......
-            labelTest.Text = String.Format("X: {0} Y: {1}\n J: {2}   I: {3}\n N:{4}", me.X, me.Y, j, i, j + i * b.getCellsNumX());
+            //ideeee.....
+            //.
+            labelTest.Text = String.Format("X: {0} Y: {1}\n J: {2} I: {3}\n N:{4}", me.X, me.Y, j, i, j + i * b.getCellsNumX());
          
-            //  b.CellClicked((int)i, (int)j);
+  
             dragedcells.Add(Tuple.Create<int,int>(i,j));
 
-            //  updatePixels();
+          
             //get and update the bitmap with a line
             if (draw)
             {
                 g.DrawEllipse(new Pen(Color.AntiqueWhite), me.X, me.Y, 3,3);
-                panelGrid.Refresh();
+                panelGrid.Image=tmp;
             }
 
 
@@ -286,10 +290,14 @@ namespace Catch_me__
             //temporalis
             //updatePixels();
 
+            //regi updateoltam az egesz gridet
+            // b.UpdateAllGrid();
 
-            b.UpdateAllGrid();
+            //uj csak a  gridnek egyik felet updateoltam
+            b.UpdateGridPart();
             panelGrid.Image = b.GetBitmap();
-            g = null;
+            if(g!=null)
+            g.Dispose() ;
         }
 
         private void panelGrid_MouseMove(object sender, MouseEventArgs e)

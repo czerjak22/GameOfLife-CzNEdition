@@ -6,6 +6,7 @@ using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WMPLib;
 
 namespace Catch_me__
@@ -23,15 +24,16 @@ namespace Catch_me__
         int volSfx;
         public SoundManager()
         {
-
+            if (File.Exists(@"sounds\\music.mp3") == false) MessageBox.Show("Background Music not found!");
+            if (File.Exists(@"sounds\\click.mp3") == false) MessageBox.Show("Button click sound not found!");
             #region musicPlayerInit
             //music
-            musicPlayer.URL = @"music.mp3";
+            musicPlayer.URL = @"sounds\\music.mp3";
             musicPlayer.settings.playCount = 9999;
             musicPlayer.controls.stop();
 
             //butt
-            button.URL = @"click.wav";
+            button.URL = @"sounds\\click.mp3";
           //  musicPlayer.settings.playCount = 9999;
             button.controls.stop();
 

@@ -83,7 +83,7 @@
             this.buttonReturn.Location = new System.Drawing.Point(36, 12);
             this.buttonReturn.Name = "buttonReturn";
             this.buttonReturn.Size = new System.Drawing.Size(100, 28);
-            this.buttonReturn.TabIndex = 7;
+            this.buttonReturn.TabIndex = 1;
             this.buttonReturn.Text = "Return";
             this.buttonReturn.UseVisualStyleBackColor = true;
             this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
@@ -104,7 +104,7 @@
             this.trackBarSpeed.Minimum = 50;
             this.trackBarSpeed.Name = "trackBarSpeed";
             this.trackBarSpeed.Size = new System.Drawing.Size(104, 56);
-            this.trackBarSpeed.TabIndex = 6;
+            this.trackBarSpeed.TabIndex = 8;
             this.trackBarSpeed.Value = 50;
             this.trackBarSpeed.Scroll += new System.EventHandler(this.trackBarSpeed_Scroll);
             // 
@@ -113,7 +113,7 @@
             this.buttonResize.Location = new System.Drawing.Point(36, 510);
             this.buttonResize.Name = "buttonResize";
             this.buttonResize.Size = new System.Drawing.Size(100, 28);
-            this.buttonResize.TabIndex = 4;
+            this.buttonResize.TabIndex = 12;
             this.buttonResize.Text = "Resize";
             this.buttonResize.UseVisualStyleBackColor = true;
             this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
@@ -126,7 +126,7 @@
             this.checkBoxGrid.Location = new System.Drawing.Point(38, 153);
             this.checkBoxGrid.Name = "checkBoxGrid";
             this.checkBoxGrid.Size = new System.Drawing.Size(54, 20);
-            this.checkBoxGrid.TabIndex = 11;
+            this.checkBoxGrid.TabIndex = 5;
             this.checkBoxGrid.Text = "Grid";
             this.checkBoxGrid.UseVisualStyleBackColor = true;
             this.checkBoxGrid.CheckedChanged += new System.EventHandler(this.checkBoxGrid_CheckedChanged);
@@ -139,7 +139,7 @@
             this.checkBoxDrag.Location = new System.Drawing.Point(38, 126);
             this.checkBoxDrag.Name = "checkBoxDrag";
             this.checkBoxDrag.Size = new System.Drawing.Size(100, 20);
-            this.checkBoxDrag.TabIndex = 10;
+            this.checkBoxDrag.TabIndex = 4;
             this.checkBoxDrag.Text = "Drag Select";
             this.checkBoxDrag.UseVisualStyleBackColor = true;
             this.checkBoxDrag.CheckedChanged += new System.EventHandler(this.checkBoxDrag_CheckedChanged);
@@ -149,7 +149,7 @@
             this.buttonIterate.Location = new System.Drawing.Point(36, 475);
             this.buttonIterate.Name = "buttonIterate";
             this.buttonIterate.Size = new System.Drawing.Size(100, 28);
-            this.buttonIterate.TabIndex = 3;
+            this.buttonIterate.TabIndex = 11;
             this.buttonIterate.Text = "Iterate";
             this.buttonIterate.UseVisualStyleBackColor = true;
             this.buttonIterate.Click += new System.EventHandler(this.button1_Click);
@@ -159,7 +159,7 @@
             this.buttonClear.Location = new System.Drawing.Point(36, 441);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(100, 28);
-            this.buttonClear.TabIndex = 2;
+            this.buttonClear.TabIndex = 10;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
@@ -184,20 +184,20 @@
             // 
             // numericUpDownCellSize
             // 
-            this.numericUpDownCellSize.Location = new System.Drawing.Point(24, 224);
+            this.numericUpDownCellSize.Location = new System.Drawing.Point(13, 224);
             this.numericUpDownCellSize.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
             this.numericUpDownCellSize.Minimum = new decimal(new int[] {
-            3,
+            2,
             0,
             0,
             0});
             this.numericUpDownCellSize.Name = "numericUpDownCellSize";
-            this.numericUpDownCellSize.Size = new System.Drawing.Size(56, 22);
-            this.numericUpDownCellSize.TabIndex = 5;
+            this.numericUpDownCellSize.Size = new System.Drawing.Size(63, 22);
+            this.numericUpDownCellSize.TabIndex = 6;
             this.numericUpDownCellSize.Value = new decimal(new int[] {
             16,
             0,
@@ -210,7 +210,7 @@
             this.buttonTimer.Location = new System.Drawing.Point(36, 407);
             this.buttonTimer.Name = "buttonTimer";
             this.buttonTimer.Size = new System.Drawing.Size(100, 28);
-            this.buttonTimer.TabIndex = 1;
+            this.buttonTimer.TabIndex = 9;
             this.buttonTimer.Text = "Start";
             this.buttonTimer.UseVisualStyleBackColor = true;
             this.buttonTimer.Click += new System.EventHandler(this.buttonTimer_Click);
@@ -222,7 +222,7 @@
             this.buttonLoad.Location = new System.Drawing.Point(36, 51);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(100, 28);
-            this.buttonLoad.TabIndex = 8;
+            this.buttonLoad.TabIndex = 2;
             this.buttonLoad.Text = "Load";
             this.buttonLoad.UseVisualStyleBackColor = false;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
@@ -233,7 +233,7 @@
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(100, 28);
-            this.buttonSave.TabIndex = 9;
+            this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -263,10 +263,10 @@
             // buttonRe
             // 
             this.buttonRe.Enabled = false;
-            this.buttonRe.Location = new System.Drawing.Point(87, 222);
+            this.buttonRe.Location = new System.Drawing.Point(76, 222);
             this.buttonRe.Name = "buttonRe";
-            this.buttonRe.Size = new System.Drawing.Size(62, 24);
-            this.buttonRe.TabIndex = 17;
+            this.buttonRe.Size = new System.Drawing.Size(83, 27);
+            this.buttonRe.TabIndex = 7;
             this.buttonRe.Text = "Resize";
             this.buttonRe.UseVisualStyleBackColor = true;
             this.buttonRe.Click += new System.EventHandler(this.buttonRe_Click);

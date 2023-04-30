@@ -74,16 +74,17 @@ namespace Catch_me__
         }
         #endregion
 
-        public Board(int width,int height,int cellSize) 
+        public Board(int width, int height, int cellSize)
         {
             this.height = height;
             this.width = width;
             this.cellSize = cellSize;
-            valtoztatottCellak = new List<Tuple<Cell,Tuple<int,int>>>();
+            valtoztatottCellak = new List<Tuple<Cell, Tuple<int, int>>>();
             cellActive = GlobalVar.CellActive;
             cellInActiv = GlobalVar.CellInactive;
-            border=GlobalVar.Border;
-            initCell= GlobalVar.InitCell;
+            border = GlobalVar.Border;
+            //   initCell= GlobalVar.InitCell;//kiszedtem ezt a featuret
+            initCell = GlobalVar.CellInactive;
         }
 
 
@@ -226,9 +227,12 @@ namespace Catch_me__
             {
 
                 cells[i, j].IsAlive = !cells[i, j].IsAlive;
+
+                //uj modifikalas
+                valtoztatottCellak.Add(Tuple.Create(cells[i, j], Tuple.Create(i, j)));
             }
             catch (Exception e){
-           
+             //   Console.log("Cells clicked fugvenybe");
             }
         }
       
@@ -371,7 +375,7 @@ namespace Catch_me__
                 {
 
                     if (cellSize > minCellBorder)
-                        FillCellWBorder(j, (int)i, border, cellInActiv);
+                        FillCellWBorder(j, (int)i, cellInActiv, border);
                     else
                         FillCell(j, i, cellInActiv);
                 }

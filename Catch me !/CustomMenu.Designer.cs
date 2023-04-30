@@ -67,7 +67,7 @@
             // panelCellActive
             // 
             this.panelCellActive.BackColor = System.Drawing.Color.Brown;
-            this.panelCellActive.Location = new System.Drawing.Point(141, 182);
+            this.panelCellActive.Location = new System.Drawing.Point(193, 182);
             this.panelCellActive.Name = "panelCellActive";
             this.panelCellActive.Size = new System.Drawing.Size(50, 50);
             this.panelCellActive.TabIndex = 7;
@@ -76,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(131, 155);
+            this.label1.Location = new System.Drawing.Point(183, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 9;
@@ -85,7 +85,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(221, 155);
+            this.label3.Location = new System.Drawing.Point(273, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 16);
             this.label3.TabIndex = 11;
@@ -94,7 +94,7 @@
             // panelCellInactive
             // 
             this.panelCellInactive.BackColor = System.Drawing.Color.Brown;
-            this.panelCellInactive.Location = new System.Drawing.Point(235, 184);
+            this.panelCellInactive.Location = new System.Drawing.Point(287, 184);
             this.panelCellInactive.Name = "panelCellInactive";
             this.panelCellInactive.Size = new System.Drawing.Size(50, 50);
             this.panelCellInactive.TabIndex = 10;
@@ -103,7 +103,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(330, 155);
+            this.label4.Location = new System.Drawing.Point(382, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 16);
             this.label4.TabIndex = 13;
@@ -112,7 +112,7 @@
             // panelBorder
             // 
             this.panelBorder.BackColor = System.Drawing.Color.Brown;
-            this.panelBorder.Location = new System.Drawing.Point(329, 184);
+            this.panelBorder.Location = new System.Drawing.Point(381, 184);
             this.panelBorder.Name = "panelBorder";
             this.panelBorder.Size = new System.Drawing.Size(50, 50);
             this.panelBorder.TabIndex = 12;
@@ -126,6 +126,7 @@
             this.label5.Size = new System.Drawing.Size(63, 16);
             this.label5.TabIndex = 15;
             this.label5.Text = "Initial Cell";
+            this.label5.Visible = false;
             // 
             // panelCellInitial
             // 
@@ -134,6 +135,7 @@
             this.panelCellInitial.Name = "panelCellInitial";
             this.panelCellInitial.Size = new System.Drawing.Size(50, 50);
             this.panelCellInitial.TabIndex = 14;
+            this.panelCellInitial.Visible = false;
             this.panelCellInitial.Click += new System.EventHandler(this.panelCellInitial_Click);
             // 
             // CustomMenu

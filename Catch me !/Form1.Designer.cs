@@ -1,4 +1,6 @@
-﻿namespace Catch_me__
+﻿using System.ComponentModel;
+
+namespace Catch_me__
 {
 	partial class Form1
 	{
@@ -28,11 +30,30 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+          //  this.mainMenuStatic = new Catch_me__.MainMenu(Sounds);
+           // this.controlPanelStatic = new Catch_me__.ControlPanel(Sounds);
+           // this.customMenuStatic = new Catch_me__.CustomMenu(Sounds);
             this.mainMenuStatic = new Catch_me__.MainMenu(Sounds);
             this.controlPanelStatic = new Catch_me__.ControlPanel(Sounds);
             this.customMenuStatic = new Catch_me__.CustomMenu(Sounds);
-            this.game = new Catch_me__.Game(Sounds);
+            this.aboutMenuStatic = new Catch_me__.About();
+ 
             this.SuspendLayout();
+
+            ///
+            /// aboutMenuStatic
+            ///
+
+          
+          // this.abotuMenuStatic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aboutMenuStatic.Location = new System.Drawing.Point(25, 25);
+            this.aboutMenuStatic.Margin = new System.Windows.Forms.Padding(4);
+            this.aboutMenuStatic.Name = "aboutMenuStatic";
+          
+            this.aboutMenuStatic.Size = new System.Drawing.Size(565, 499);
+            
+           
+            
             // 
             // mainMenuStatic
             // 
@@ -66,13 +87,8 @@
             this.customMenuStatic.Visible = false;
             // 
             // game
-            // 
-            this.game.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.game.Location = new System.Drawing.Point(0, 0);
-            this.game.Margin = new System.Windows.Forms.Padding(4);
-            this.game.Name = "game";
-            this.game.Size = new System.Drawing.Size(615, 544);
-            this.game.TabIndex = 0;
+            //
+           
             // 
             // Form1
             // 
@@ -82,24 +98,26 @@
             this.ClientSize = new System.Drawing.Size(615, 544);
             this.Controls.Add(this.mainMenuStatic);
             this.Controls.Add(this.controlPanelStatic);
+            this.Controls.Add(this.aboutMenuStatic);
             this.Controls.Add(this.customMenuStatic);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(633, 591);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Catch me!";
+            this.Text = "Czerjak's Game of Life";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
-
+            
 		}
-
+            
 
         #endregion
 
        
-        private ControlPanel controlPanelStatic;
+        private ControlPanel controlPanelStatic; 
         private MainMenu mainMenuStatic;
         private CustomMenu customMenuStatic;
+        private About aboutMenuStatic;
     }
 }
 
