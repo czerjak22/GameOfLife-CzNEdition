@@ -39,6 +39,7 @@ namespace CIG
         {
             this.sfx = s;
             InitializeComponent();
+            Board.gridOn = checkBoxGrid.Checked;
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
