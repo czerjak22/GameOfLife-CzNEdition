@@ -43,6 +43,7 @@
             // 
             // ReturnBtn
             // 
+            this.ReturnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReturnBtn.Location = new System.Drawing.Point(201, 454);
             this.ReturnBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ReturnBtn.Name = "ReturnBtn";

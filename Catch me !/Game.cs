@@ -46,16 +46,21 @@ namespace CIG
             // fileDialog=new OpenFileDialog();
             sfx.PlayClick();
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            
-                openFileDialog.InitialDirectory = "c:\\";
+            Form1 frm = Parent.FindForm()as Form1;
+
+           
+             
                 openFileDialog.Filter = "Igen files (*.igen)|*.igen";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-
-
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Maximized;
+                    PanelResize();
+                }
                 StreamReader reader = new StreamReader(openFileDialog.OpenFile());
                
                 //itt egyszer el kell dontsem hogy mit savelek hogy tudjam beolvasni   
@@ -437,6 +442,13 @@ namespace CIG
                 if (p != null)
                 {
                     p.Visible = true;
+                    Form1 frm=Parent.FindForm() as Form1;
+                    if (frm != null)
+                    {
+                        frm.WindowState = FormWindowState.Normal;
+                        frm.Size = frm.MinimumSize;
+                       
+                    }
                     Dispose();
                 }
                 else MessageBox.Show("Error when exiting! Please try restarting the app!");
